@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            SpringCloud Eureka中的@LoadBalanced注解 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/">SpringCloud Eureka中的@LoadBalanced注解</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-10-25
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/spring-cloud/">spring-cloud</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=SpringCloud Eureka中的@LoadBalanced注解&url=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=SpringCloud Eureka中的@LoadBalanced注解&url=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/&title=SpringCloud Eureka中的@LoadBalanced注解" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=SpringCloud Eureka中的@LoadBalanced注解&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/&text=SpringCloud Eureka中的@LoadBalanced注解" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/eureka/ >eureka</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>在前面的示例代码中，当我们搭建spring cloud Eureka的server及消费者和生产者集群时，当我们访问<a target="_blank" rel="noopener" href="http://localhost:10001/consumer/hello%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%BC%9A%E4%BA%A4%E6%9B%BF%E7%9A%84%E8%BF%94%E5%9B%9Ehello">http://localhost:10001/consumer/hello的时候，会交替的返回hello</a> euureka port:9091;hello euureka port:9092;hello euureka port:9093;,其中这里其主要作用的就是@LoadBalanced注解。下面我们来一看究竟。</p>
+<p>如我们在消费者端只需要添加一段如下代码，就可以实现负载均衡。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LoadBalancerAutoConfiguration"><a href="#LoadBalancerAutoConfiguration" class="headerlink" title="LoadBalancerAutoConfiguration"></a>LoadBalancerAutoConfiguration</h3><p>要想LoadBalanced注解生效，我们首先需要看一下LoadBalancerAutoConfiguration类中的自动化配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line"><span class="comment">//类路径下必须存在RestTemplate才会生效</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(RestTemplate.class)</span></span><br><span class="line"><span class="comment">//Spring容器内必须存在这个接口的Bean才会生效，默认为BlockingLoadBalancerClient实例</span></span><br><span class="line"><span class="meta">@ConditionalOnBean(LoadBalancerClient.class)</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties(LoadBalancerProperties.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoadBalancerAutoConfiguration</span> &#123;</span><br><span class="line">	<span class="comment">//获取容器中的所有标注为LoadBalanced的bean</span></span><br><span class="line">	<span class="meta">@LoadBalanced</span></span><br><span class="line">	<span class="meta">@Autowired(required = false)</span></span><br><span class="line">	<span class="keyword">private</span> List&lt;RestTemplate&gt; restTemplates = Collections.emptyList();</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired(required = false)</span></span><br><span class="line">	<span class="keyword">private</span> List&lt;LoadBalancerRequestTransformer&gt; transformers = Collections.emptyList();</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//这里主要为RestTemplate添加拦截器,</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> SmartInitializingSingleton <span class="title function_">loadBalancedRestTemplateInitializerDeprecated</span><span class="params">(</span></span><br><span class="line"><span class="params">			<span class="keyword">final</span> ObjectProvider&lt;List&lt;RestTemplateCustomizer&gt;&gt; restTemplateCustomizers)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> () -&gt; restTemplateCustomizers.ifAvailable(customizers -&gt; &#123;</span><br><span class="line">			<span class="keyword">for</span> (RestTemplate restTemplate : LoadBalancerAutoConfiguration.<span class="built_in">this</span>.restTemplates) &#123;</span><br><span class="line">				<span class="keyword">for</span> (RestTemplateCustomizer customizer : customizers) &#123;</span><br><span class="line">					customizer.customize(restTemplate);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例化LoadBalancerRequestFactory，里面包含了创建LoadBalancerRequest的createRequest方法</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">	<span class="keyword">public</span> LoadBalancerRequestFactory <span class="title function_">loadBalancerRequestFactory</span><span class="params">(LoadBalancerClient loadBalancerClient)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">LoadBalancerRequestFactory</span>(loadBalancerClient, <span class="built_in">this</span>.transformers);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line">	<span class="meta">@Conditional(RetryMissingOrDisabledCondition.class)</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">LoadBalancerInterceptorConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用LoadBalancerClient和LoadBalancerRequestFactory实例化LoadBalancerInterceptor，负载均衡拦截器，最终将拦截器会添加到</span></span><br><span class="line">        <span class="comment">//RestTemplate</span></span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="keyword">public</span> LoadBalancerInterceptor <span class="title function_">loadBalancerInterceptor</span><span class="params">(LoadBalancerClient loadBalancerClient,</span></span><br><span class="line"><span class="params">				LoadBalancerRequestFactory requestFactory)</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">LoadBalancerInterceptor</span>(loadBalancerClient, requestFactory);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//向容器内放入一个RestTemplateCustomizer 定制器</span></span><br><span class="line">        <span class="comment">//给所有的RestTemplate添加拦截器LoadBalancerInterceptor,使其具备负载均衡的能力</span></span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">		<span class="keyword">public</span> RestTemplateCustomizer <span class="title function_">restTemplateCustomizer</span><span class="params">(<span class="keyword">final</span> LoadBalancerInterceptor loadBalancerInterceptor)</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> restTemplate -&gt; &#123;</span><br><span class="line">				List&lt;ClientHttpRequestInterceptor&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(restTemplate.getInterceptors());</span><br><span class="line">				list.add(loadBalancerInterceptor);</span><br><span class="line">				restTemplate.setInterceptors(list);</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">RetryMissingOrDisabledCondition</span> <span class="keyword">extends</span> <span class="title class_">AnyNestedCondition</span> &#123;</span><br><span class="line"></span><br><span class="line">		RetryMissingOrDisabledCondition() &#123;</span><br><span class="line">			<span class="built_in">super</span>(ConfigurationPhase.REGISTER_BEAN);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@ConditionalOnMissingClass(&quot;org.springframework.retry.support.RetryTemplate&quot;)</span></span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">RetryTemplateMissing</span> &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@ConditionalOnProperty(value = &quot;spring.cloud.loadbalancer.retry.enabled&quot;, havingValue = &quot;false&quot;)</span></span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">RetryDisabled</span> &#123;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Auto configuration for retry mechanism.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line">	<span class="meta">@ConditionalOnClass(RetryTemplate.class)</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">RetryAutoConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">		<span class="keyword">public</span> LoadBalancedRetryFactory <span class="title function_">loadBalancedRetryFactory</span><span class="params">()</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">LoadBalancedRetryFactory</span>() &#123;</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>@ConditionalOnClass：某个class位于类路径上，才会实例化一个Bean,代码示例中只有在RestTemplate存在的情况下，才会进行自动化部署。</p>
+<p>@ConditionalOnBean：仅仅在当前上下文中存在某个对象时，才会实例化一个Bean,代码示例中只有在LoadBalancerClient对象存在的情况下，才会进行自动化部署，其中LoadBalancerClient的默认实现类为BlockingLoadBalancerClient</p>
+<p>经过前面的自动化配置，此时RestTemplate因为有了拦截器的加持，已经具备了负载均衡的能力。即所用通过RestTemplate发送的请求都会通过LoadBalancerInterceptor拦截器。</p>
+<h3 id="LoadBalancerInterceptor"><a href="#LoadBalancerInterceptor" class="headerlink" title="LoadBalancerInterceptor"></a>LoadBalancerInterceptor</h3><p>找到LoadBalancerInterceptor源码后，我们发现拦截器在获取请求的originalUri 和serviceName 后，最终委托给LoadBalancerClient去执行，其中一个serviceName有可能对应很多个实际的服务，所以LoadBalancerClient可以运用相关的均衡算法找出符合条件的服务做最终的请求。部分源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> ClientHttpResponse <span class="title function_">intercept</span><span class="params">(<span class="keyword">final</span> HttpRequest request, <span class="keyword">final</span> <span class="type">byte</span>[] body,</span></span><br><span class="line"><span class="params">		<span class="keyword">final</span> ClientHttpRequestExecution execution)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">	<span class="keyword">final</span> <span class="type">URI</span> <span class="variable">originalUri</span> <span class="operator">=</span> request.getURI();</span><br><span class="line">	<span class="type">String</span> <span class="variable">serviceName</span> <span class="operator">=</span> originalUri.getHost();</span><br><span class="line">	Assert.state(serviceName != <span class="literal">null</span>, <span class="string">&quot;Request URI does not contain a valid hostname: &quot;</span> + originalUri);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">this</span>.loadBalancer.execute(serviceName, <span class="built_in">this</span>.requestFactory.createRequest(request, body, execution));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BlockingLoadBalancerClient"><a href="#BlockingLoadBalancerClient" class="headerlink" title="BlockingLoadBalancerClient"></a>BlockingLoadBalancerClient</h3><p>我们看一下BlockingLoadBalancerClient的具体继承关系。</p>
+<p><img src="/images/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/f2d8bdf945f132699835bbf7b356deb.png" alt="f2d8bdf945f132699835bbf7b356deb"></p>
+<p>ServiceInstanceChooser是一个接口，定义了选择相应的服务实例的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public interface ServiceInstanceChooser &#123;</span><br><span class="line"></span><br><span class="line">	//根据调用者传入的serviceId，通过负载均衡算法选择一个具体的服务实例来提供 服务</span><br><span class="line">	ServiceInstance choose(String serviceId);</span><br><span class="line"></span><br><span class="line">	//根据调用者传入的serviceId和请求，通过负载均衡算法选择一个具体的服务实例来提供 服务</span><br><span class="line">	&lt;T&gt; ServiceInstance choose(String serviceId, Request&lt;T&gt; request);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>LoadBalancerClient定义了执行请求的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface LoadBalancerClient extends ServiceInstanceChooser &#123;</span><br><span class="line"></span><br><span class="line">	//执行请求</span><br><span class="line">	&lt;T&gt; T execute(String serviceId, LoadBalancerRequest&lt;T&gt; request) throws IOException;</span><br><span class="line">	&lt;T&gt; T execute(String serviceId, ServiceInstance serviceInstance, LoadBalancerRequest&lt;T&gt; request) throws IOException;</span><br><span class="line">	//重新构造url,即将原来的替换为实际服务的地址url</span><br><span class="line">	URI reconstructURI(ServiceInstance instance, URI original);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们看一下默认的实现类BlockingLoadBalancerClient,真正执行负载均衡的实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings(&#123; &quot;unchecked&quot;, &quot;rawtypes&quot; &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BlockingLoadBalancerClient</span> <span class="keyword">implements</span> <span class="title class_">LoadBalancerClient</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> LoadBalancerClientFactory loadBalancerClientFactory;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> LoadBalancerProperties properties;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">BlockingLoadBalancerClient</span><span class="params">(LoadBalancerClientFactory loadBalancerClientFactory,</span></span><br><span class="line"><span class="params">			LoadBalancerProperties properties)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.loadBalancerClientFactory = loadBalancerClientFactory;</span><br><span class="line">		<span class="built_in">this</span>.properties = properties;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行请求</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> &lt;T&gt; T <span class="title function_">execute</span><span class="params">(String serviceId, LoadBalancerRequest&lt;T&gt; request)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="comment">//hit是一种算法，这里可以认为是 分组，在指定的组里面进行负载均衡</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">hint</span> <span class="operator">=</span> getHint(serviceId);</span><br><span class="line">		LoadBalancerRequestAdapter&lt;T, DefaultRequestContext&gt; lbRequest = <span class="keyword">new</span> <span class="title class_">LoadBalancerRequestAdapter</span>&lt;&gt;(request,</span><br><span class="line">				<span class="keyword">new</span> <span class="title class_">DefaultRequestContext</span>(request, hint));</span><br><span class="line">		Set&lt;LoadBalancerLifecycle&gt; supportedLifecycleProcessors = getSupportedLifecycleProcessors(serviceId);</span><br><span class="line">		supportedLifecycleProcessors.forEach(lifecycle -&gt; lifecycle.onStart(lbRequest));</span><br><span class="line">		<span class="comment">//这里会选择真正的提供服务的实例</span></span><br><span class="line">		<span class="type">ServiceInstance</span> <span class="variable">serviceInstance</span> <span class="operator">=</span> choose(serviceId, lbRequest);</span><br><span class="line">		<span class="keyword">if</span> (serviceInstance == <span class="literal">null</span>) &#123;</span><br><span class="line">			supportedLifecycleProcessors.forEach(lifecycle -&gt; lifecycle.onComplete(</span><br><span class="line">					<span class="keyword">new</span> <span class="title class_">CompletionContext</span>&lt;&gt;(CompletionContext.Status.DISCARD, lbRequest, <span class="keyword">new</span> <span class="title class_">EmptyResponse</span>())));</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;No instances available for &quot;</span> + serviceId);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//调用真正的服务实例，执行请求</span></span><br><span class="line">		<span class="keyword">return</span> execute(serviceId, serviceInstance, lbRequest);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> &lt;T&gt; T <span class="title function_">execute</span><span class="params">(String serviceId, ServiceInstance serviceInstance, LoadBalancerRequest&lt;T&gt; request)</span></span><br><span class="line">			<span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="type">DefaultResponse</span> <span class="variable">defaultResponse</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultResponse</span>(serviceInstance);</span><br><span class="line">		Set&lt;LoadBalancerLifecycle&gt; supportedLifecycleProcessors = getSupportedLifecycleProcessors(serviceId);</span><br><span class="line">		<span class="type">Request</span> <span class="variable">lbRequest</span> <span class="operator">=</span> request <span class="keyword">instanceof</span> Request ? (Request) request : <span class="keyword">new</span> <span class="title class_">DefaultRequest</span>&lt;&gt;();</span><br><span class="line">		supportedLifecycleProcessors</span><br><span class="line">				.forEach(lifecycle -&gt; lifecycle.onStartRequest(lbRequest, <span class="keyword">new</span> <span class="title class_">DefaultResponse</span>(serviceInstance)));</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//执行真正的请求，并返回请求的结果</span></span><br><span class="line">			<span class="type">T</span> <span class="variable">response</span> <span class="operator">=</span> request.apply(serviceInstance);</span><br><span class="line">			<span class="type">Object</span> <span class="variable">clientResponse</span> <span class="operator">=</span> getClientResponse(response);</span><br><span class="line">			supportedLifecycleProcessors</span><br><span class="line">					.forEach(lifecycle -&gt; lifecycle.onComplete(<span class="keyword">new</span> <span class="title class_">CompletionContext</span>&lt;&gt;(CompletionContext.Status.SUCCESS,</span><br><span class="line">							lbRequest, defaultResponse, clientResponse)));</span><br><span class="line">			<span class="keyword">return</span> response;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (IOException iOException) &#123;</span><br><span class="line">			supportedLifecycleProcessors.forEach(lifecycle -&gt; lifecycle.onComplete(</span><br><span class="line">					<span class="keyword">new</span> <span class="title class_">CompletionContext</span>&lt;&gt;(CompletionContext.Status.FAILED, iOException, lbRequest, defaultResponse)));</span><br><span class="line">			<span class="keyword">throw</span> iOException;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (Exception exception) &#123;</span><br><span class="line">			supportedLifecycleProcessors.forEach(lifecycle -&gt; lifecycle.onComplete(</span><br><span class="line">					<span class="keyword">new</span> <span class="title class_">CompletionContext</span>&lt;&gt;(CompletionContext.Status.FAILED, exception, lbRequest, defaultResponse)));</span><br><span class="line">			ReflectionUtils.rethrowRuntimeException(exception);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> &lt;T&gt; Object <span class="title function_">getClientResponse</span><span class="params">(T response)</span> &#123;</span><br><span class="line">		<span class="type">ClientHttpResponse</span> <span class="variable">clientHttpResponse</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span> (response <span class="keyword">instanceof</span> ClientHttpResponse) &#123;</span><br><span class="line">			clientHttpResponse = (ClientHttpResponse) response;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (clientHttpResponse != <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ResponseData</span>(clientHttpResponse, <span class="literal">null</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">catch</span> (IOException ignored) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Set&lt;LoadBalancerLifecycle&gt; <span class="title function_">getSupportedLifecycleProcessors</span><span class="params">(String serviceId)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> LoadBalancerLifecycleValidator.getSupportedLifecycleProcessors(</span><br><span class="line">				loadBalancerClientFactory.getInstances(serviceId, LoadBalancerLifecycle.class),</span><br><span class="line">				DefaultRequestContext.class, Object.class, ServiceInstance.class);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> URI <span class="title function_">reconstructURI</span><span class="params">(ServiceInstance serviceInstance, URI original)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> LoadBalancerUriTools.reconstructURI(serviceInstance, original);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> ServiceInstance <span class="title function_">choose</span><span class="params">(String serviceId)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> choose(serviceId, REQUEST);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> &lt;T&gt; ServiceInstance <span class="title function_">choose</span><span class="params">(String serviceId, Request&lt;T&gt; request)</span> &#123;</span><br><span class="line">		<span class="comment">//查找负载均衡器，默认采用的是RoundRobinLoadBalancer,即简单轮询负载均衡器，</span></span><br><span class="line">		ReactiveLoadBalancer&lt;ServiceInstance&gt; loadBalancer = loadBalancerClientFactory.getInstance(serviceId);</span><br><span class="line">		<span class="keyword">if</span> (loadBalancer == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		Response&lt;ServiceInstance&gt; loadBalancerResponse = Mono.from(loadBalancer.choose(request)).block();</span><br><span class="line">		<span class="keyword">if</span> (loadBalancerResponse == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//获取真正的提供服务的实例</span></span><br><span class="line">		<span class="keyword">return</span> loadBalancerResponse.getServer();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String <span class="title function_">getHint</span><span class="params">(String serviceId)</span> &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">defaultHint</span> <span class="operator">=</span> properties.getHint().getOrDefault(<span class="string">&quot;default&quot;</span>, <span class="string">&quot;default&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">hintPropertyValue</span> <span class="operator">=</span> properties.getHint().get(serviceId);</span><br><span class="line">		<span class="keyword">return</span> hintPropertyValue != <span class="literal">null</span> ? hintPropertyValue : defaultHint;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面就是负载均衡的策略，我们也可以按照自己的方式实现自己的负载均衡</p>
+<h3 id="自定义负载均衡的实现"><a href="#自定义负载均衡的实现" class="headerlink" title="自定义负载均衡的实现"></a>自定义负载均衡的实现</h3><p>我们在原有的rookie-springcloud-eureka-consumer进行代码的修改，我们首先定义自己的负载均衡注解MyLoadBalanced</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123; ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD &#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Qualifier</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyLoadBalanced &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>自定义请求的拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyHttpInterceptor</span> <span class="keyword">implements</span> <span class="title class_">ClientHttpRequestInterceptor</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ClientHttpResponse <span class="title function_">intercept</span><span class="params">(HttpRequest request, <span class="type">byte</span>[] body, ClientHttpRequestExecution execution)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">MyHttpRequest</span> <span class="variable">newRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyHttpRequest</span>(request);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> execution.execute(newRequest, body);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>自定义请求MyHttpRequest</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyHttpRequest</span> <span class="keyword">implements</span> <span class="title class_">HttpRequest</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String [] uriStr=<span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;http://127.0.0.1:9091/producer/hello&quot;</span>,<span class="string">&quot;http://127.0.0.1:9092/producer/hello&quot;</span>,<span class="string">&quot;http://127.0.0.1:9093/producer/hello&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> HttpRequest httpRequest;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyHttpRequest</span><span class="params">(HttpRequest httpRequest)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.httpRequest=httpRequest;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMethodValue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.httpRequest.getMethodValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> URI <span class="title function_">getURI</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> max=<span class="number">3</span>,min=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ran2</span> <span class="operator">=</span> (<span class="type">int</span>) (Math.random()*(max-min)+min);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">URI</span> <span class="variable">newUri</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">URI</span>(uriStr[ran2]);</span><br><span class="line">            <span class="keyword">return</span> newUri;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.httpRequest.getURI();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> HttpHeaders <span class="title function_">getHeaders</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.httpRequest.getHeaders();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注入到spring容器中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class MyLoadBalancerAutoConfiguration &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Autowired(required = false)</span><br><span class="line">    @MyLoadBalanced</span><br><span class="line">    private List&lt;RestTemplate&gt; myTemplates = Collections.emptyList();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public SmartInitializingSingleton myLoadBalancedRestTemplateInitializer() &#123;</span><br><span class="line">        return new SmartInitializingSingleton() &#123;</span><br><span class="line"></span><br><span class="line">            public void afterSingletonsInstantiated() &#123;</span><br><span class="line">                for (RestTemplate tpl : myTemplates) &#123;</span><br><span class="line">                    MyHttpInterceptor mi = new MyHttpInterceptor();</span><br><span class="line">                    List list = new ArrayList(tpl.getInterceptors());</span><br><span class="line">                    list.add(mi);</span><br><span class="line">                    tpl.setInterceptors(list);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应用启动类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RookieEurekaConsumerServerApplication</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//    @Bean</span></span><br><span class="line"><span class="comment">//    @LoadBalanced</span></span><br><span class="line"><span class="comment">//    public RestTemplate restTemplate() &#123;</span></span><br><span class="line"><span class="comment">//        return new RestTemplate();</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义拦截器注解</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@MyLoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(RookieEurekaConsumerServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就实现了自己的负载均衡策略了，负载策略按照随机策略获取真正的实例进行响应。我们在访问<a target="_blank" rel="noopener" href="http://localhost:10001/consumer/hello%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%BC%9A%E9%9A%8F%E6%9C%BA%E8%BF%94%E5%9B%9Ehello">http://localhost:10001/consumer/hello的时候，会随机返回hello</a> euureka port:9091;hello euureka port:9092;hello euureka port:9093;中的一个。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2021/12/08/tomcat/2021-12-08-Idea%E5%AF%BC%E5%85%A5tomcat9.0.56%E6%BA%90%E7%A0%81/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Idea导入tomcat9.0.56源码</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/">
+        <span>Spring Cloud EurekaServer初始化流程</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LoadBalancerAutoConfiguration"><span class="toc-number">1.1.</span> <span class="toc-text">LoadBalancerAutoConfiguration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoadBalancerInterceptor"><span class="toc-number">1.2.</span> <span class="toc-text">LoadBalancerInterceptor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BlockingLoadBalancerClient"><span class="toc-number">1.3.</span> <span class="toc-text">BlockingLoadBalancerClient</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">自定义负载均衡的实现</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

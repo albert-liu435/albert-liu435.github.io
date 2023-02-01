@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            SpringCloud Eureka注册中心搭建 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/">SpringCloud Eureka注册中心搭建</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-10-20
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/spring-cloud/">spring-cloud</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=SpringCloud Eureka注册中心搭建&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=SpringCloud Eureka注册中心搭建&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/&title=SpringCloud Eureka注册中心搭建" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=SpringCloud Eureka注册中心搭建&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/&text=SpringCloud Eureka注册中心搭建" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/eureka/ >eureka</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>Eureka 是 Netflix 公司开源的一个服务注册与发现的组件，和其他 Netflix 公司的服务组件（例如负载均衡、熔断器、网关等）一起，被 Spring Cloud 整合为 Spring Cloud Netflix 模块。eureka从2.0版本开始闭源，1.0版本目前仍然在维护中</p>
+<p>在进行注册中心与服务搭建的时候，首先需要配置host文件，host文件目录如下：C:\Windows\System32\drivers\etc\hosts,在hosts配置文件中添加如下信息</p>
+<p>#eureka 服务配置<br>127.0.0.1 eureka-server.dev.com</p>
+<p>127.0.0.1 eureka.server8761.com<br>127.0.0.1 eureka.server8762.com<br>127.0.0.1 eureka.server8763.com</p>
+<h3 id="Eureka注册中心单实例搭建"><a href="#Eureka注册中心单实例搭建" class="headerlink" title="Eureka注册中心单实例搭建"></a>Eureka注册中心单实例搭建</h3><p>eureka注册中心的搭建还是比较简单的，这里只是贴出了主要代码和配置，更详细的代码参考github</p>
+<h4 id="Eureka-Server的注册中心搭建"><a href="#Eureka-Server的注册中心搭建" class="headerlink" title="Eureka Server的注册中心搭建"></a>Eureka Server的注册中心搭建</h4><p>单实例的注册中心搭建只需要在类上面添加一个注解@EnableEurekaServer即可,关于这个注解的详细解析，后面会有专门的文章进行解释</p>
+<p>1、注册中心的配置文件如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8761</span> <span class="comment">#指定运行端口</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-server</span> <span class="comment">#指定服务名称</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">eureka-server.dev.com</span> <span class="comment">#指定主机地址</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span> <span class="comment">#指定是否要从注册中心获取服务（注册中心不需要开启）</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">false</span> <span class="comment">#指定是否要注册到注册中心（注册中心不需要开启）</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="comment">#设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">root:</span> <span class="string">debug</span></span><br></pre></td></tr></table></figure>
+
+<p>2、java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RookieEurekaServerApplication</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        SpringApplication.run(RookieEurekaServerApplication.class, args);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>直接运行代码，然后在浏览器中访问<a target="_blank" rel="noopener" href="http://eureka-server.dev.com:8761/,%E5%A6%82%E6%9E%9C%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%8D%B3%E8%A1%A8%E7%A4%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%B7%B2%E7%BB%8F%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%88%90%E4%BA%86">http://eureka-server.dev.com:8761/,如果出现如下页面，即表示注册中心已经搭建完成了</a></p>
+<p><img src="/images/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/4832c500c5036d814ff2298ea2d6899.png" alt="4832c500c5036d814ff2298ea2d6899"></p>
+<h4 id="Eureka-Client-服务"><a href="#Eureka-Client-服务" class="headerlink" title="Eureka Client 服务"></a>Eureka Client 服务</h4><p>创建两个服务，一个作为生产者服务 rookie-springcloud-eureka-producer，一个作为消费者服务rookie-springcloud-eureka-consumer，其中消费者服务对外提供访问的接口，将用户的访问通过内部调用生产者服务并最终返回给用户结果。</p>
+<h5 id="创建消费者服务"><a href="#创建消费者服务" class="headerlink" title="创建消费者服务"></a>创建消费者服务</h5><p>1、配置文件信息</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10001</span> <span class="comment">#指定运行端口</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-consumer</span> <span class="comment">#指定服务名称</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">$&#123;EUREKA_DEFAULT_ZONE:http://eureka-server.dev.com:8761/eureka&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">root:</span> <span class="string">info</span></span><br></pre></td></tr></table></figure>
+
+<p>java代码示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/consumer/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title function_">getId</span><span class="params">()</span> &#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; result = restTemplate.getForEntity(<span class="string">&quot;http://eureka-producer//producer/hello&quot;</span>, String.class);</span><br><span class="line">        <span class="type">String</span> <span class="variable">hello</span> <span class="operator">=</span> result.getBody();</span><br><span class="line">        logger.info(<span class="string">&quot;request: &#123;&#125;&quot;</span>, hello);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(hello);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//EnableDiscoveryClient注解可以省略</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RookieEurekaConsumerServerApplication</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(RookieEurekaConsumerServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>LoadBalanced的注解的作用主要用来让RestTemplate有负载均衡的能力</p>
+<h5 id="创建生产者服务"><a href="#创建生产者服务" class="headerlink" title="创建生产者服务"></a>创建生产者服务</h5><p>1、配置文件信息</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">9091</span> <span class="comment">#指定运行端口</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-producer</span> <span class="comment">#指定服务名称</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">$&#123;EUREKA_DEFAULT_ZONE:http://eureka-server.dev.com:8761/eureka&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">root:</span> <span class="string">debug</span></span><br></pre></td></tr></table></figure>
+
+<p>2、java 示例代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProducerController</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(getClass());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/producer/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title function_">hello</span><span class="params">()</span> &#123;</span><br><span class="line">        logger.info(<span class="string">&quot;request: &#123;&#125;&quot;</span>, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(<span class="string">&quot;hello eureka&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RookieEurekaProducerServerApplication</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(RookieEurekaProducerServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><p>将上面的三个应用分别进行打包，并启动三个命令行窗口，按照如下顺序进行启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -jar -Dspring.profiles.active=dev rookie-springcloud-eureka-server-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=dev rookie-springcloud-eureka-consumer-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=dev rookie-springcloud-eureka-producer-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中访问  <a target="_blank" rel="noopener" href="http://eureka-server.dev.com:8761/">http://eureka-server.dev.com:8761/</a>  即可看到 生产者和消费者已经注册到注册中心了，同时使用postman或者在浏览器中访问<a target="_blank" rel="noopener" href="http://localhost:10001/consumer/hello,%E8%BF%94%E5%9B%9Ehello">http://localhost:10001/consumer/hello,返回hello</a> eureka即代表已经成功。</p>
+<h3 id="Eureka注册中心多实例搭建"><a href="#Eureka注册中心多实例搭建" class="headerlink" title="Eureka注册中心多实例搭建"></a>Eureka注册中心多实例搭建</h3><p>多实例集群的搭建和前面单实例搭建一样，只不过需要修改配置文件即可</p>
+<h4 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h4><p>将应用进行打包，然后启动windows的三个命令行窗口分别运行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java -jar -Dspring.profiles.active=8761 rookie-springcloud-eureka-server-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=8762 rookie-springcloud-eureka-server-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=8763 rookie-springcloud-eureka-server-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Eureka-Client服务"><a href="#Eureka-Client服务" class="headerlink" title="Eureka Client服务"></a>Eureka Client服务</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">java -jar -Dspring.profiles.active=9091 rookie-springcloud-eureka-producer-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=9092 rookie-springcloud-eureka-producer-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=9093 rookie-springcloud-eureka-producer-1.0-SNAPSHOT.jar</span><br><span class="line"></span><br><span class="line">java -jar -Dspring.profiles.active=1001 rookie-springcloud-eureka-consumer-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>启动完成后，分别访问 <a target="_blank" rel="noopener" href="http://eureka-server.dev.com:8761/%EF%BC%8Chttp://eureka-server.dev.com:8762/,http://eureka-server.dev.com:8763/%EF%BC%8C%E5%A6%82%E5%9B%BE%EF%BC%9A">http://eureka-server.dev.com:8761/，http://eureka-server.dev.com:8762/,http://eureka-server.dev.com:8763/，如图：</a></p>
+<p><img src="/images/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/4a124b193db1d88544fe95b22f17661.png" alt="4a124b193db1d88544fe95b22f17661"></p>
+<p>访问<a target="_blank" rel="noopener" href="http://localhost:10001/consumer/hello%EF%BC%8C%E4%BC%9A%E4%BA%A4%E6%9B%BF%E8%BF%94%E5%9B%9E">http://localhost:10001/consumer/hello，会交替返回</a> hello euureka port:9091;hello euureka port:9092;hello euureka port:9093;这里就完成了集群的搭建即服务调用的负载均衡，因为有@LoadBalanced注解的作用，所以会交替输出该信息。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Spring Cloud EurekaServer初始化流程</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/">
+        <span>Eureka架构原理</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%8D%95%E5%AE%9E%E4%BE%8B%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">Eureka注册中心单实例搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Server%E7%9A%84%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">Eureka Server的注册中心搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Client-%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.2.</span> <span class="toc-text">Eureka Client 服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%B6%88%E8%B4%B9%E8%80%85%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">创建消费者服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%9F%E4%BA%A7%E8%80%85%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">创建生产者服务</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">启动服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%90%AD%E5%BB%BA"><span class="toc-number">1.2.</span> <span class="toc-text">Eureka注册中心多实例搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.2.1.</span> <span class="toc-text">注册中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Client%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">Eureka Client服务</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

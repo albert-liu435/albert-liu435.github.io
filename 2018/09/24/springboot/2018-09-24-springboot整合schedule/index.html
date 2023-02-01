@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            springboot整合schedule | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/">springboot整合schedule</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2018-09-24
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/springboot/">springboot</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=springboot整合schedule&url=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=springboot整合schedule&url=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/&title=springboot整合schedule" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=springboot整合schedule&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/&text=springboot整合schedule" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/springboot/ >springboot</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>@Scheduled注解是Spring框架的一个注解，通过该注解可以轻松的实现任务的调度，话不多说，我们直接看在Springboot中如何使用该注解进行任务调度</p>
+<h3 id="创建springboot项目"><a href="#创建springboot项目" class="headerlink" title="创建springboot项目"></a>创建springboot项目</h3><p>需要的pom依赖如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>应用启动类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rookie.bigdata;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.EnableScheduling;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="comment">//开启调度任务</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringbootApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(SpringbootApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>任务类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rookie.bigdata.scheduled;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.Scheduled;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * Created by  on 2018/9/21.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="meta">@Component</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Task</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">SimpleDateFormat</span> <span class="variable">dateFormat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Scheduled(cron = &quot;0 10-15 16 * * ?&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">task0</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间： &quot;</span> + dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指定间隔调度任务，指在该任务完成后的间隔</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Scheduled(fixedDelay = 5000)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">task1</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间： &quot;</span> + dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指定间隔调度任务,参考fixedDelay,单位为毫秒</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Scheduled(fixedDelayString = &quot;5000&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">task2</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间： &quot;</span> + dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * fixedRate:执行频率，每隔多少时间就启动任务，不管该任务是否启动完成参考fixedRate</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Scheduled(fixedRate = 5000)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">task3</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间： &quot;</span> + dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 参考fixedRate</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Scheduled(fixedDelayString = &quot;5000&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">task4</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间： &quot;</span> + dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 参考fixedRate</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Scheduled(fixedRateString = &quot;5000&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">task5</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间： &quot;</span> + dateFormat.format(<span class="keyword">new</span> <span class="title class_">Date</span>()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>启动应用程序，直接观察项目中任务的运行情况</p>
+<h3 id="cron表达式参考如下"><a href="#cron表达式参考如下" class="headerlink" title="cron表达式参考如下"></a>cron表达式参考如下</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">一个cron表达式有至少<span class="number">6</span>个（也可能<span class="number">7</span>个）有空格分隔的时间元素。 </span><br><span class="line">按顺序依次为 </span><br><span class="line">秒（<span class="number">0</span>~<span class="number">59</span>） </span><br><span class="line">分钟（<span class="number">0</span>~<span class="number">59</span>） </span><br><span class="line">小时（<span class="number">0</span>~<span class="number">23</span>） </span><br><span class="line">天（月）（<span class="number">0</span>~<span class="number">31</span>，但是你需要考虑你月的天数） </span><br><span class="line">月（<span class="number">0</span>~<span class="number">11</span>） </span><br><span class="line">天（星期）（<span class="number">1</span>~<span class="number">7</span> <span class="number">1</span>=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT） </span><br><span class="line"><span class="number">7.</span>年份（<span class="number">1970</span>－<span class="number">2099</span>） </span><br><span class="line">其中每个元素可以是一个值(如<span class="number">6</span>),一个连续区间(<span class="number">9</span>-<span class="number">12</span>),一个间隔时间(<span class="number">8</span>-<span class="number">18</span>/<span class="number">4</span>)(/表示每隔<span class="number">4</span>小时),一个列表(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>),通配符。由于<span class="string">&quot;月份中的日期&quot;</span>和<span class="string">&quot;星期中的日期&quot;</span>这两个元素互斥的,必须要对其中一个设置?. </span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">10</span>,<span class="number">14</span>,<span class="number">16</span> * * ? 每天上午<span class="number">10</span>点，下午<span class="number">2</span>点，<span class="number">4</span>点 </span><br><span class="line"><span class="number">0</span> <span class="number">0</span>/<span class="number">30</span> <span class="number">9</span>-<span class="number">17</span> * * ?   朝九晚五工作时间内每半小时 </span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">12</span> ? * WED 表示每个星期三中午<span class="number">12</span>点 </span><br><span class="line"><span class="string">&quot;0 0 12 * * ?&quot;</span> 每天中午<span class="number">12</span>点触发 </span><br><span class="line"><span class="string">&quot;0 15 10 ? * *&quot;</span> 每天上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 * * ?&quot;</span> 每天上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 * * ? *&quot;</span> 每天上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 * * ? 2005&quot;</span> <span class="number">2005</span>年的每天上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 * 14 * * ?&quot;</span> 在每天下午<span class="number">2</span>点到下午<span class="number">2</span>:<span class="number">59</span>期间的每<span class="number">1</span>分钟触发 </span><br><span class="line"><span class="string">&quot;0 0/5 14 * * ?&quot;</span> 在每天下午<span class="number">2</span>点到下午<span class="number">2</span>:<span class="number">55</span>期间的每<span class="number">5</span>分钟触发 </span><br><span class="line"><span class="string">&quot;0 0/5 14,18 * * ?&quot;</span> 在每天下午<span class="number">2</span>点到<span class="number">2</span>:<span class="number">55</span>期间和下午<span class="number">6</span>点到<span class="number">6</span>:<span class="number">55</span>期间的每<span class="number">5</span>分钟触发 </span><br><span class="line"><span class="string">&quot;0 0-5 14 * * ?&quot;</span> 在每天下午<span class="number">2</span>点到下午<span class="number">2</span>:<span class="number">05</span>期间的每<span class="number">1</span>分钟触发 </span><br><span class="line"><span class="string">&quot;0 10,44 14 ? 3 WED&quot;</span> 每年三月的星期三的下午<span class="number">2</span>:<span class="number">10</span>和<span class="number">2</span>:<span class="number">44</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 ? * MON-FRI&quot;</span> 周一至周五的上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 15 * ?&quot;</span> 每月<span class="number">15</span>日上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 L * ?&quot;</span> 每月最后一日的上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 ? * 6L&quot;</span> 每月的最后一个星期五上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 ? * 6L 2002-2005&quot;</span> <span class="number">2002</span>年至<span class="number">2005</span>年的每月的最后一个星期五上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line"><span class="string">&quot;0 15 10 ? * 6#3&quot;</span> 每月的第三个星期五上午<span class="number">10</span>:<span class="number">15</span>触发 </span><br><span class="line">有些子表达式能包含一些范围或列表 </span><br><span class="line">例如：子表达式（天（星期））可以为 “MON-FRI”，“MON，WED，FRI”，“MON-WED,SAT” </span><br><span class="line">“*”字符代表所有可能的值 </span><br><span class="line">因此，“*”在子表达式（月）里表示每个月的含义，“*”在子表达式（天（星期））表示星期的每一天 </span><br><span class="line">“/”字符用来指定数值的增量 </span><br><span class="line">例如：在子表达式（分钟）里的“<span class="number">0</span>/<span class="number">15</span>”表示从第<span class="number">0</span>分钟开始，每<span class="number">15</span>分钟 </span><br><span class="line">         在子表达式（分钟）里的“<span class="number">3</span>/<span class="number">20</span>”表示从第<span class="number">3</span>分钟开始，每<span class="number">20</span>分钟（它和“<span class="number">3</span>，<span class="number">23</span>，<span class="number">43</span>”）的含义一样 </span><br><span class="line">“？”字符仅被用于天（月）和天（星期）两个子表达式，表示不指定值 </span><br><span class="line">当<span class="number">2</span>个子表达式其中之一被指定了值以后，为了避免冲突，需要将另一个子表达式的值设为“？” </span><br><span class="line">“L” 字符仅被用于天（月）和天（星期）两个子表达式，它是单词“last”的缩写 </span><br><span class="line">但是它在两个子表达式里的含义是不同的。 </span><br><span class="line">在天（月）子表达式中，“L”表示一个月的最后一天 </span><br><span class="line">在天（星期）自表达式中，“L”表示一个星期的最后一天，也就是SAT </span><br><span class="line">如果在“L”前有具体的内容，它就具有其他的含义了 </span><br><span class="line">例如：“<span class="number">6L</span>”表示这个月的倒数第６天，“ＦＲＩＬ”表示这个月的最一个星期五 </span><br><span class="line">注意：在使用“L”参数时，不要指定列表或范围，因为这会导致问题 </span><br><span class="line">字段   允许值   允许的特殊字符 </span><br><span class="line">秒    <span class="number">0</span>-<span class="number">59</span>    , - * / </span><br><span class="line">分    <span class="number">0</span>-<span class="number">59</span>    , - * / </span><br><span class="line">小时    <span class="number">0</span>-<span class="number">23</span>    , - * / </span><br><span class="line">日期    <span class="number">1</span>-<span class="number">31</span>    , - * ? / L W C </span><br><span class="line">月份    <span class="number">1</span>-<span class="number">12</span> 或者 JAN-DEC    , - * / </span><br><span class="line">星期    <span class="number">1</span>-<span class="number">7</span> 或者 SUN-SAT    , - * ? / L C # </span><br><span class="line">年（可选）    留空, <span class="number">1970</span>-<span class="number">2099</span>    , - * /</span><br></pre></td></tr></table></figure>
+
+<p>参考 ：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kkdelta/article/details/7238581">cron表达式</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/albert-liu435/rookie-springboot/tree/main/rookie-springbootweb/rookie-springboot-schedule">项目源码</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2018/09/29/javaSE/2018-09-29-javaSPI%E6%9C%BA%E5%88%B6/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>javaSPI机制</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2018/09/18/nginx/2018-09-18-nginx%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+        <span>nginx安装部署</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2018/09/24/springboot/2018-09-24-springboot%E6%95%B4%E5%90%88schedule/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">创建springboot项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8F%82%E8%80%83%E5%A6%82%E4%B8%8B"><span class="toc-number">2.</span> <span class="toc-text">cron表达式参考如下</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

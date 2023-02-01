@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            apex trigger用法 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/">apex trigger用法</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2022-07-05
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/salesforce/">salesforce</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=apex trigger用法&url=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=apex trigger用法&url=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/&title=apex trigger用法" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=apex trigger用法&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/&text=apex trigger用法" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/apex/ >apex</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h3 id="Apex触发器"><a href="#Apex触发器" class="headerlink" title="Apex触发器"></a>Apex触发器</h3><p>Apex触发器使您能够在操作Salesforce中的记录（例如插入，更新或删除）事件之前或之后执行执行自定义操作。就像数据库系统支持触发器一样，Apex提供触发器支持来管理记录。<br>通常，您可以使用触发器根据特定条件执行操作，修改相关记录或限制某些操作的发生。您可以使用触发器在Apex中执行任何操作，包括执行SOQL和DML或调用自定义的Apex方法。</p>
+<p>Apex 触发器使您能够在更改 Salesforce 记录之前或之后执行自定义操作.支持如下<br>insert<br>update<br>delete<br>merge<br>upsert<br>undelete<br>有两种类型触发器<br>before triggers：用于在将记录值保存到数据库之前更新或验证记录值<br>After triggers:用于访问系统设置的字段值（例如记录的ID或者上次修改日期字段），并影响其他记录的更改。触发 after 触发器的记录是只读的。</p>
+<h3 id="Trigger语法"><a href="#Trigger语法" class="headerlink" title="Trigger语法"></a>Trigger语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">trigger TriggerName on <span class="title function_">ObjectName</span> <span class="params">(trigger_events)</span> &#123;</span><br><span class="line">                     code_block</span><br><span class="line">                     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 trigger_events可以是以下一个或多个事件,当多个事件的时候用逗号分开<br>before insert<br>before update<br>before delete<br>after insert<br>after update<br>after delete<br>after undelete</p>
+<h3 id="触发器上下文"><a href="#触发器上下文" class="headerlink" title="触发器上下文"></a>触发器上下文</h3><p>要访问导致触发器触发的记录，请使用上下文变量，也有一些其他的上下文变量返回一个布尔值来指示触发器是否由于更新或其他事件而被触发。 当触发器组合多个事件时，这些变量很有用。如下问触发器上下文变量</p>
+<p>isExecuting:如果 Apex 代码的当前上下文是触发器，而不是 Visualforce 页面、Web 服务或执行匿名（）API 调用。.<br>isInsert:如果由于Salesforce用户界面，Apex或API的插入操作而触发此触发器，则返回true<br>isUpdate:如果由于Salesforce用户界面，Apex或API的更新操作而触发此触发器，则返回true<br>isDelete:如果由于Salesforce用户界面，Apex或API的删除操作而触发此触发器，则返回true<br>isBefore:如果在保存任何记录之前触发此触发器，则返回true。<br>isAfter:如果在保存所有记录后触发此触发器，则返回true。<br>isUndelete:如果在从回收站中恢复记录（即从Salesforce用户界面，Apex或API取消删除操作之后）触发此触发器，则返回true。<br>new:返回sObject记录的新版本列表。此sObject列表仅在插入，更新和取消删除触发器中可用，并且记录只能在before触发器中修改。<br>newMap:ID对新对象记录的版本的映射。此映射仅在更新之前，插入之后，更新之后和取消删除触发器之后可用。<br>old:返回sObject记录的旧版本列表。该sObject列表仅在更新和删除触发器中可用。<br>oldMap:旧版本的sObject记录的ID映射。此映射仅在更新和删除触发器中可用。<br>operationType:返回与当前操作对应的 System.TriggerOperation 类型的枚举。System.TriggerOperation 枚举的可能值为：BEFORE_INSERT,BEFORE_UPDATE,BEFORE_DELETE,AFTER_INSERT,AFTER_UPDATE,AFTER_DELETE， 和AFTER_UNDELETE. 如果您根据不同的触发器类型改变您的编程逻辑，请考虑使用转变具有唯一触发器执行枚举状态的不同排列的语句。<br>size:触发器调用中的记录总数，包括旧的和新的</p>
+<h3 id="trigger的简单使用"><a href="#trigger的简单使用" class="headerlink" title="trigger的简单使用"></a>trigger的简单使用</h3><p>如下为一个简单的trigger的使用，我们直接将业务代码写到trigger中即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表示在如果该Account没有业务机会的话，创建一个默认业务机会给他</span></span><br><span class="line">trigger AddRelatedRecord on <span class="title function_">Account</span><span class="params">(after insert, after update)</span> &#123;</span><br><span class="line">List&lt;Opportunity&gt; oppList = <span class="keyword">new</span> <span class="title class_">List</span>&lt;Opportunity&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get the related opportunities for the accounts in this trigger</span></span><br><span class="line">Map&lt;Id,Account&gt; acctsWithOpps = <span class="keyword">new</span> <span class="title class_">Map</span>&lt;Id,Account&gt;(</span><br><span class="line">    [SELECT Id,(SELECT Id FROM Opportunities) FROM Account WHERE Id IN :Trigger.New]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add an opportunity for each account if it doesn&#x27;t already have one.</span></span><br><span class="line"><span class="comment">// Iterate through each account.</span></span><br><span class="line"><span class="keyword">for</span>(Account a : Trigger.New) &#123;</span><br><span class="line">    System.debug(<span class="string">&#x27;acctsWithOpps.get(a.Id).Opportunities.size()=&#x27;</span> + acctsWithOpps.get(a.Id).Opportunities.size());</span><br><span class="line">    <span class="comment">// Check if the account already has a related opportunity.</span></span><br><span class="line">    <span class="keyword">if</span> (acctsWithOpps.get(a.Id).Opportunities.size() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// If it doesn&#x27;t, add a default opportunity</span></span><br><span class="line">        oppList.add(<span class="keyword">new</span> <span class="title class_">Opportunity</span>(Name=a.Name + <span class="string">&#x27; Opportunity&#x27;</span>,</span><br><span class="line">                                   StageName=<span class="string">&#x27;Prospecting&#x27;</span>,</span><br><span class="line">                                   CloseDate=System.today().addMonths(<span class="number">1</span>),</span><br><span class="line">                                   AccountId=a.Id));</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (oppList.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    insert oppList;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果是比较复杂的业务逻辑，可以采用如下模式进行开发trigger.</p>
+<p>定义一个trigger基类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">trigger基类</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Triggers</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Enum representing each of before/after CRUD events on Sobjects</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Evt</span> &#123;</span><br><span class="line">        afterdelete, afterinsert, afterundelete,</span><br><span class="line">        afterupdate, beforedelete, beforeinsert, beforeupdate   </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Simplistic handler to implement on any of the event. It doesn&#x27;t requires or enforces any patter except the</span></span><br><span class="line"><span class="comment">        method name to be &quot;handle()&quot;, a developer is free to use any Trigger context variable or reuse any other</span></span><br><span class="line"><span class="comment">        apex class here.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Handler</span> &#123;</span><br><span class="line">        <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">()</span>;          </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Internal mapping of handlers</span></span><br><span class="line">    Map&lt;String, List&lt;Handler&gt;&gt; eventHandlerMapping = <span class="keyword">new</span> <span class="title class_">Map</span>&lt;String, List&lt;Handler&gt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Core API to bind handlers with events</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> Triggers <span class="title function_">bind</span><span class="params">(Evt event, Handler eh)</span> &#123;</span><br><span class="line">        List&lt;Handler&gt; handlers = eventHandlerMapping.get(event.name());</span><br><span class="line">        <span class="keyword">if</span> (handlers == <span class="literal">null</span>) &#123;</span><br><span class="line">            handlers = <span class="keyword">new</span> <span class="title class_">List</span>&lt;Handler&gt;();</span><br><span class="line">            eventHandlerMapping.put(event.name(), handlers);</span><br><span class="line">        &#125;</span><br><span class="line">        handlers.add(eh);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        Invokes correct handlers as per the context of trigger and available registered handlers</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">manage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Evt</span> <span class="variable">ev</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(Trigger.isInsert &amp;&amp; Trigger.isBefore)&#123;</span><br><span class="line">            ev = Evt.beforeinsert;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(Trigger.isInsert &amp;&amp; Trigger.isAfter)&#123;</span><br><span class="line">            ev = Evt.afterinsert;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(Trigger.isUpdate &amp;&amp; Trigger.isBefore)&#123;</span><br><span class="line">            ev = Evt.beforeupdate;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(Trigger.isUpdate &amp;&amp; Trigger.isAfter)&#123;</span><br><span class="line">            ev = Evt.afterupdate;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(Trigger.isDelete &amp;&amp; Trigger.isBefore)&#123;</span><br><span class="line">            ev = Evt.beforedelete;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(Trigger.isDelete &amp;&amp; Trigger.isAfter)&#123;</span><br><span class="line">            ev = Evt.afterdelete;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(Trigger.isundelete)&#123;</span><br><span class="line">            ev = Evt.afterundelete;             </span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Handler&gt; handlers = eventHandlerMapping.get(ev.name());</span><br><span class="line">        <span class="keyword">if</span> (handlers != <span class="literal">null</span> &amp;&amp; !handlers.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Handler h : handlers) &#123;</span><br><span class="line">                h.handle();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写处理逻辑handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> without sharing <span class="keyword">class</span> <span class="title class_">AccountTriggerHandler1</span> <span class="keyword">implements</span> <span class="title class_">Triggers</span>.Handler &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">//处理复杂的业务逻辑</span></span><br><span class="line">	   System.debug(<span class="string">&#x27;执行AccountTriggerHandler1&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> without sharing <span class="keyword">class</span> <span class="title class_">AccountTriggerHandler1</span> <span class="keyword">implements</span> <span class="title class_">Triggers</span>.Handler &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="comment">//处理复杂的业务逻辑</span></span><br><span class="line">	   System.debug(<span class="string">&#x27;执行AccountTriggerHandler2&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写触发器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">trigger AccountTrigger on <span class="title function_">Account</span><span class="params">(before insert,before update)</span> &#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Triggers</span>()</span><br><span class="line">		<span class="comment">//这里还可以绑定更多的handler，用于处理复杂的逻辑</span></span><br><span class="line">        .bind(Triggers.Evt.beforeinsert,<span class="keyword">new</span> <span class="title class_">AccountTriggerHandler1</span>())</span><br><span class="line">        .bind(Triggers.Evt.beforeupdate,<span class="keyword">new</span> <span class="title class_">AccountTriggerHandler2</span>())</span><br><span class="line">		.manage(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按照这种方式就可以编写复杂的业务逻辑的trigger了，并且维护起来也比较方便。</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://trailhead.salesforce.com/content/learn/modules/apex_triggers">Apex Triggers</a></p>
+<p> <a target="_blank" rel="noopener" href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm">Apex DeveloperGuide</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2022/07/05/salesforce/apex/trigger%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%80%E5%85%B32022-07-07/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>apex trigger用法</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2022/06/22/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E4%B8%8E%E5%AF%BC%E5%87%BA/">
+        <span>salesforce数据导入与导出</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apex%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">Apex触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trigger%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Trigger语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.</span> <span class="toc-text">触发器上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trigger%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">trigger的简单使用</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            apex开发基础 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/">apex开发基础</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2022-06-14
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/salesforce/">salesforce</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=apex开发基础&url=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=apex开发基础&url=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/&title=apex开发基础" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=apex开发基础&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/&text=apex开发基础" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/apex/ >apex</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>Apex 是一种编程语言，它具有类似 Java 的语法，其用法与数据库存储过程类似。Apex 允许开发人员将业务逻辑添加到系统事件中，例如按钮的点击、相关记录的更新以及操作 Visualforce 页面等。</p>
+<h3 id="Apex特点"><a href="#Apex特点" class="headerlink" title="Apex特点"></a>Apex特点</h3><p>可托管：Apex在Lightning平台服务器上保存、编译和执行</p>
+<p>面向对象:Apex 支持类、接口和继承。<br>强类型:同java一样，Apex会在编译过程中验证对对象的引用<br>多租户环境:于 Apex 在多租户平台上运行，因此通过实施限制来严密防范代码失控，防止代码独占共享资源。<br>与数据库集成：直接访问并操作记录。Apex 可直接访问记录和其字段，并提供操作这些记录的语句和查询语言。<br>与数据紧密结合:Apex 支持数据库的事务性访问，允许回滚操作。<br>使用简便:Apex 基于熟悉的 Java 习惯用语。<br>测试方便:Apex 为单元测试的创建、执行和代码覆盖提供内置支持。Salesforce 确保所有的自定义 Apex 代码在任何平台升级之前通过执行所有单元测试按照预期来运行。</p>
+<p>apex工作执行流程如下图</p>
+<p><img src="/images/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/b5f118b227075065ebbc42ff4e9ea26b_apex-database-architecture.webp" alt="b5f118b227075065ebbc42ff4e9ea26b_apex-database-architecture"></p>
+<h3 id="Apex开发工具"><a href="#Apex开发工具" class="headerlink" title="Apex开发工具"></a>Apex开发工具</h3><p>Apex开发可以在salesforce的控制台上进行开发，也可以在salesforce推荐的通过集成Salesforce Extension Pack扩展包的VS Code上面进行开发，我先介绍在salesforce控制台上面进行开发。</p>
+<p>如下为在控制台上面进行开发的过程</p>
+<p><img src="/images/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/image-20220614095946219.png" alt="image-20220614095946219"></p>
+<p><img src="/images/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/image-20220614100020554.png" alt="image-20220614100020554"></p>
+<p><img src="/images/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/image-20220614100025719.png" alt="image-20220614100025719"></p>
+<p><img src="/images/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/image-20220614100031589.png" alt="image-20220614100031589"></p>
+<p>我们可以在控制台进行开发，编辑，测试，debug等等</p>
+<h3 id="Apex数据类型"><a href="#Apex数据类型" class="headerlink" title="Apex数据类型"></a>Apex数据类型</h3><h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>primitive(基础类型):<br>所有的基础类型都是按照值传递的，并且在初始化的时候如果没有赋值的话，默认都为null,这一点和java有点不一样。在使用时要初始化为适当的值。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.salesforce.com/docs/atlas.en-us.238.0.apexref.meta/apexref/apex_namespace_System.htm">数据类型对应的方法参考</a></p>
+<p>Blob:用于存储二进制数据的集合，如下例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">myString</span> <span class="operator">=</span> <span class="string">&#x27;StringToBlob&#x27;</span>;</span><br><span class="line"><span class="comment">//字符串转换为二进制</span></span><br><span class="line"><span class="type">Blob</span> <span class="variable">myBlob</span> <span class="operator">=</span> Blob.valueof(myString);</span><br><span class="line"><span class="comment">//二进制数据大小</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">size</span> <span class="operator">=</span> myBlob.size();</span><br><span class="line">System.debug(<span class="string">&#x27;二进制数据为&#x27;</span>+myBlob);</span><br><span class="line">System.debug(<span class="string">&#x27;二进制数据大小为&#x27;</span>+size);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.salesforce.com/docs/atlas.en-us.238.0.apexref.meta/apexref/apex_methods_system_blob.htm#apex_System_Blob_methods">方法详解</a></p>
+<p>Boolean：用于标识为true或者false</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//String类型转换为Boolean类型</span></span><br><span class="line"><span class="type">Boolean</span> <span class="variable">b</span> <span class="operator">=</span> Boolean.valueOf(<span class="string">&#x27;true&#x27;</span>);</span><br><span class="line">System.assertEquals(<span class="literal">true</span>, b);</span><br><span class="line">System.debug(<span class="string">&#x27;转换类型&#x27;</span>+b);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.salesforce.com/docs/atlas.en-us.238.0.apexref.meta/apexref/apex_methods_system_boolean.htm">方法详解</a></p>
+<p>Date：日期类型，不包含时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Date</span> <span class="variable">myDate</span> <span class="operator">=</span> Date.newInstance(<span class="number">1960</span>, <span class="number">2</span>, <span class="number">17</span>);</span><br><span class="line"><span class="type">Date</span> <span class="variable">newDate</span> <span class="operator">=</span> mydate.addDays(<span class="number">2</span>);</span><br><span class="line"><span class="type">Date</span> <span class="variable">nowDate</span> <span class="operator">=</span> Date.today();</span><br><span class="line"></span><br><span class="line">System.debug(<span class="string">&#x27;日期数据为&#x27;</span>+newDate);</span><br><span class="line">System.debug(<span class="string">&#x27;今日日期数据为&#x27;</span>+nowDate);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.salesforce.com/docs/atlas.en-us.238.0.apexref.meta/apexref/apex_methods_system_date.htm">方法详解</a></p>
+<p>Datetime:指示特定的日期和时间值，前面的Date只包括日期不包括时间，这个包括时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Datetime</span> <span class="variable">myDate</span> <span class="operator">=</span> Datetime.now();</span><br><span class="line"><span class="comment">//Date newDate = mydate.addDays(2);</span></span><br><span class="line"><span class="type">Date</span> <span class="variable">nowDate</span> <span class="operator">=</span> Date.today();</span><br><span class="line"></span><br><span class="line">System.debug(<span class="string">&#x27;日期时间数据为&#x27;</span>+myDate);</span><br><span class="line">System.debug(<span class="string">&#x27;今日日期时间数据为&#x27;</span>+nowDate);</span><br></pre></td></tr></table></figure>
+
+<p>Decimal:包含小数点的数字。小数是任意精度数。货币字段自动分配为 Decimal 类型。</p>
+<p>Double：</p>
+<p>ID:平台中唯一的标识符，由18个字符组成</p>
+<p>Integer: 32位组成的整数，值域为-2147483648 到2147483647</p>
+<p>Long: 64位组成的整数，值域为-9223372036854775808到9223372036854775807</p>
+<p>Object：Object类型可以存放任何类型的数据，使用的时候可以进行转换</p>
+<p>String：字符串</p>
+<p>Time：用来表示指定的时间</p>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>collection(集合)<br>Lists:可以包含重复元素的集合<br>Sets:不能包含重复元素的集合<br>Maps:映射是键值对的集合，其中每个唯一键映射到单个值<br>enum:(枚举)：枚举是一种抽象数据类型，其每个值都恰好采用您指定的一组有限标识符中的一个。枚举通常用于定义一组没有数字顺序的可能值。典型的例子包括卡片的花色，或一年中的特定季节。</p>
+<h4 id="Apex控制语句"><a href="#Apex控制语句" class="headerlink" title="Apex控制语句"></a>Apex控制语句</h4><p>Apex控制语句 for,do <em><strong>while,while,if</strong></em>else**,switch等个java类似不再赘述</p>
+<h3 id="Apex运算符"><a href="#Apex运算符" class="headerlink" title="Apex运算符"></a>Apex运算符</h3><table>
+<thead>
+<tr>
+<th align="left">操作符</th>
+<th align="left">语法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&#x3D;</td>
+<td align="left">x &#x3D; y</td>
+<td align="left"><strong>赋值运算符</strong>,将y的值赋值给x</td>
+</tr>
+<tr>
+<td align="left">+&#x3D;</td>
+<td align="left">x +&#x3D; y</td>
+<td align="left"><strong>加法赋值运算符</strong>,将y值加上x再赋值给x</td>
+</tr>
+<tr>
+<td align="left">*&#x3D;</td>
+<td align="left">x *&#x3D; y</td>
+<td align="left"><strong>乘法赋值运算符</strong>,将y的值乘以x的值并赋值给x</td>
+</tr>
+<tr>
+<td align="left">-&#x3D;</td>
+<td align="left">x -&#x3D; y</td>
+<td align="left"><strong>减法赋值运算符</strong>，将x的值减去y的值并重新赋值给x</td>
+</tr>
+<tr>
+<td align="left">&#x2F;&#x3D;</td>
+<td align="left">x &#x2F;&#x3D; y</td>
+<td align="left"><strong>除法赋值运算符</strong>,将x的值除以y的值并重新赋值给y</td>
+</tr>
+<tr>
+<td align="left">|&#x3D;</td>
+<td align="left">x |&#x3D; y</td>
+<td align="left"><strong>OR 赋值运算符</strong>,即当x和y有一个值为true,则x值为true</td>
+</tr>
+<tr>
+<td align="left">&amp;&#x3D;</td>
+<td align="left">x &amp;&#x3D; y</td>
+<td align="left"><strong>AND 赋值运算符</strong>,即当x和y有一个值为false,则x值为false</td>
+</tr>
+<tr>
+<td align="left">&lt;&lt;&#x3D;</td>
+<td align="left">x &lt;&lt;&#x3D; y</td>
+<td align="left"><strong>按位左移赋值运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;&#x3D;</td>
+<td align="left">x &gt;&gt;&#x3D; y</td>
+<td align="left"><strong>有符号赋值运算符按位右移</strong>。</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;&gt;&gt;&#x3D;</td>
+<td align="left">x &gt;&gt;&gt;&#x3D; y</td>
+<td align="left"><strong>无符号赋值运算符按位右移</strong>。</td>
+</tr>
+<tr>
+<td align="left">? ：</td>
+<td align="left">X ？y : z</td>
+<td align="left"><strong>三元运算符</strong></td>
+</tr>
+<tr>
+<td align="left">&amp;&amp;</td>
+<td align="left">x &amp;&amp; y</td>
+<td align="left"><strong>AND 逻辑运算符</strong></td>
+</tr>
+<tr>
+<td align="left">||</td>
+<td align="left">x || 是的</td>
+<td align="left"><strong>OR 逻辑运算符</strong></td>
+</tr>
+<tr>
+<td align="left">&#x3D;&#x3D;</td>
+<td align="left">x &#x3D;&#x3D; y</td>
+<td align="left"><strong>等式运算符</strong>。如果值X等于的值是的，表达式的计算结果为真。否则，表达式的计算结果为 false。与 Java 不同，&#x3D;&#x3D;在 Apex 中，比较对象值相等而不是引用相等，用户定义类型除外。</td>
+</tr>
+<tr>
+<td align="left">&#x3D;&#x3D;&#x3D;</td>
+<td align="left">x &#x3D;&#x3D;&#x3D; y</td>
+<td align="left"><strong>精确相等运算符</strong>。可以认为比较的是地址值</td>
+</tr>
+<tr>
+<td align="left">&lt;</td>
+<td align="left">x &lt; y</td>
+<td align="left"><strong>小于运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&gt;</td>
+<td align="left">x &gt; y</td>
+<td align="left"><strong>大于运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&lt;&#x3D;</td>
+<td align="left">x &lt;&#x3D; y</td>
+<td align="left"><strong>小于或等于运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&gt;&#x3D;</td>
+<td align="left">x &gt;&#x3D; y</td>
+<td align="left"><strong>大于或等于运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">!&#x3D;</td>
+<td align="left">x !&#x3D; y</td>
+<td align="left"><strong>不等式算子</strong>。</td>
+</tr>
+<tr>
+<td align="left">!&#x3D;&#x3D;</td>
+<td align="left">x !&#x3D;&#x3D; y</td>
+<td align="left"><strong>精确不等式运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">x + y</td>
+<td align="left"><strong>加法运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">x - y</td>
+<td align="left"><strong>减法运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">x * y</td>
+<td align="left"><strong>乘法运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&#x2F;</td>
+<td align="left">x &#x2F; y</td>
+<td align="left"><strong>除法运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">！</td>
+<td align="left">！x</td>
+<td align="left"><strong>逻辑补码运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">-x</td>
+<td align="left"><strong>一元否定运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">++</td>
+<td align="left">x++,++x</td>
+<td align="left"><strong>增量运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">–</td>
+<td align="left">x –,–x</td>
+<td align="left"><strong>递减运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&amp;</td>
+<td align="left">x 和 y</td>
+<td align="left"><strong>按位与运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">x | 是的</td>
+<td align="left"><strong>按位或运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">x ^ y</td>
+<td align="left"><strong>按位异或运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">^&#x3D;</td>
+<td align="left">x ^&#x3D; y</td>
+<td align="left"><strong>按位异或运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&lt;&lt;</td>
+<td align="left">x &lt;&lt; y</td>
+<td align="left"><strong>按位左移运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;</td>
+<td align="left">x &gt;&gt; y</td>
+<td align="left"><strong>按位右移有符号运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">&gt;&gt;&gt;</td>
+<td align="left">x &gt;&gt;&gt; y</td>
+<td align="left"><strong>按位右移无符号运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">~</td>
+<td align="left">~x</td>
+<td align="left"><strong>按位 Not 或 Complement 运算符</strong>。</td>
+</tr>
+<tr>
+<td align="left">()</td>
+<td align="left">（X）</td>
+<td align="left"><strong>括号</strong>。提升表达式的优先级X</td>
+</tr>
+<tr>
+<td align="left">?.</td>
+<td align="left">x?.y</td>
+<td align="left"><strong>安全导航操作员</strong>。</td>
+</tr>
+</tbody></table>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://trailhead.salesforce.com/en/content/learn/modules/apex_database/apex_database_intro">Get Started with Apex</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_primitives.htm">Data Types</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2022/06/16/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>salesforce数据模型</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2022/06/14/salesforce/apex/apex%E7%B1%BB%E6%8E%A5%E5%8F%A32022-06-18/">
+        <span>apex开发基础</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2022/06/14/salesforce/apex/apex%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%802022-06-14/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apex%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">Apex特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apex%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">Apex开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apex%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">Apex数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number">3.2.</span> <span class="toc-text">集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Apex%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.3.</span> <span class="toc-text">Apex控制语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apex%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">Apex运算符</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

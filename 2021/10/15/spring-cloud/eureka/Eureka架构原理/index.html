@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Eureka架构原理 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/">Eureka架构原理</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-10-15
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/spring-cloud/">spring-cloud</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Eureka架构原理&url=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Eureka架构原理&url=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/&title=Eureka架构原理" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=Eureka架构原理&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/&text=Eureka架构原理" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/eureka/ >eureka</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="eureka架构图"><a href="#eureka架构图" class="headerlink" title="eureka架构图"></a>eureka架构图</h3><p>图片为Eureka github官方给出的高可用架构图，<a target="_blank" rel="noopener" href="https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance">github</a></p>
+<p><img src="/images/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/eureka_architecture.png" alt="eureka_architecture"></p>
+<p>其中us-east-1c,us-east-1d,us-east-1e分别代表不同的数据中心即机房。Eureka Server为注册中心，实际就是我们demo中的rookie-springcloud-eureka-server集群，Application Service是服务提供者，可以认为是我们demo中的rookie-springcloud-eureka-producer集群实例。Application Client是服务的 消费者，可以认为是我们demo中的rookie-springcloud-eureka-consumer实例。</p>
+<h4 id="Eureka-Server-注册中心"><a href="#Eureka-Server-注册中心" class="headerlink" title="Eureka Server(注册中心)"></a>Eureka Server(注册中心)</h4><p>服务的注册中心主要完成三件大事</p>
+<p>1、启动后，从其他节点拉取服务注册信息</p>
+<p>2、运行过程中，启动一个evict任务，定时剔除没有按时Renew的服务</p>
+<p>3、接受到其他节点的Rgister,Renew,Cancel请求信息后，会将这些信息同步至其他注册中心的节点。</p>
+<h4 id="Register-服务注册"><a href="#Register-服务注册" class="headerlink" title="Register(服务注册)"></a>Register(服务注册)</h4><p>服务的提供者，服务的消费者以及注册中心(一般集群情况下)都会通过Rest的请求方式注册到注册中心，包括服务的ip,服务名称，url等信息，注册中心收到这些信息后，会将这些信息保存registry中。</p>
+<h4 id="Replicate-服务同步"><a href="#Replicate-服务同步" class="headerlink" title="Replicate(服务同步)"></a>Replicate(服务同步)</h4><p>在集群情况下，Eureka Server服务之间是相互注册的，不同的服务Eureka Server实例之间会进行信息的同步，用来保证信息的一致性</p>
+<h4 id="Renew-服务续约"><a href="#Renew-服务续约" class="headerlink" title="Renew(服务续约)"></a>Renew(服务续约)</h4><p>在服务注册后，Eureka Client会每隔一定时间(默认30s)发送一次心跳来通知Eureka Server(服务注册中心),说明该Eureka Client运行正常，一直处于可用的 状态，防止Eureka Server剔除。默认情况下，Eureka Server每隔一定时间(90s)内没有收到Eureka Client的心跳，Server端将会从注册列表中删除该实例。</p>
+<h4 id="Cancel-服务下线"><a href="#Cancel-服务下线" class="headerlink" title="Cancel(服务下线)"></a>Cancel(服务下线)</h4><p>服务正常停止时会向注册中心发送下线通知，Eureka Server(服务注册中心)在收到请求后，就会把该服务状态置为下线（DOWN），并把该下线事件传播出去。</p>
+<h4 id="evict-服务剔除"><a href="#evict-服务剔除" class="headerlink" title="evict(服务剔除)"></a>evict(服务剔除)</h4><p>Eureka Client 因为网络故障等原因导致不能提供服务,此时Eureka Server(服务注册中心)不再收到Eureka Client客户端的心跳超过一定时间时(默认90s)，此时Eureka Server(服务注册中心)会判定该实例已经挂掉，不能再提供服务，会将该服务从服务清单中剔除。</p>
+<p>Get Registy(获取注册表信息)</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>SpringCloud Eureka注册中心搭建</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2019/09/13/javaEE/2019-09-13-DBCP%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+        <span>DBCP连接池</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2021/10/15/spring-cloud/eureka/Eureka%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eureka%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text">eureka架构图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Eureka-Server-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.1.1.</span> <span class="toc-text">Eureka Server(注册中心)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Register-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">1.1.2.</span> <span class="toc-text">Register(服务注册)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Replicate-%E6%9C%8D%E5%8A%A1%E5%90%8C%E6%AD%A5"><span class="toc-number">1.1.3.</span> <span class="toc-text">Replicate(服务同步)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Renew-%E6%9C%8D%E5%8A%A1%E7%BB%AD%E7%BA%A6"><span class="toc-number">1.1.4.</span> <span class="toc-text">Renew(服务续约)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cancel-%E6%9C%8D%E5%8A%A1%E4%B8%8B%E7%BA%BF"><span class="toc-number">1.1.5.</span> <span class="toc-text">Cancel(服务下线)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#evict-%E6%9C%8D%E5%8A%A1%E5%89%94%E9%99%A4"><span class="toc-number">1.1.6.</span> <span class="toc-text">evict(服务剔除)</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

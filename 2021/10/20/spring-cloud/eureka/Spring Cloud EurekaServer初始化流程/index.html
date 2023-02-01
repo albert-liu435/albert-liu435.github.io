@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Spring Cloud EurekaServer初始化流程 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/">Spring Cloud EurekaServer初始化流程</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-10-20
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2022-12-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/spring-cloud/">spring-cloud</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Spring Cloud EurekaServer初始化流程&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Spring Cloud EurekaServer初始化流程&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/&title=Spring Cloud EurekaServer初始化流程" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=Spring Cloud EurekaServer初始化流程&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/&text=Spring Cloud EurekaServer初始化流程" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/eureka/ >eureka</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="Eureka初始化配置"><a href="#Eureka初始化配置" class="headerlink" title="Eureka初始化配置"></a>Eureka初始化配置</h3><p>在搭建eureka的注册中心的时候，只是需要在应用启动类中加上EnableEurekaServer注解，并在配置文件中配置相应的参数，然后启动应用，注册中心就已经搭建完成了，那么具体的流程是怎么一回事，让我们一探究竟。</p>
+<p>EnableEurekaServer注解用于激活Eureka Server的相关配置，我们继续查看EurekaServerMarkerConfiguration，可以发现里面只是在spring容器中创建了一个Maker的实例，正是因为有Marker实例的存在，才会触发EurekaServerAutoConfiguration的自动化配置，完成一系列的Eureka Server的启动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import(EurekaServerMarkerConfiguration.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableEurekaServer &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EurekaServerMarkerConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> Marker <span class="title function_">eurekaServerMarkerBean</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Marker</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">Marker</span> &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>EurekaServerAutoConfiguration</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line"><span class="meta">@Import(EurekaServerInitializerConfiguration.class)</span></span><br><span class="line"><span class="comment">//当Makers实例存在是，该自动化注解才会生效</span></span><br><span class="line"><span class="meta">@ConditionalOnBean(EurekaServerMarkerConfiguration.Marker.class)</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties(&#123; EurekaDashboardProperties.class, InstanceRegistryProperties.class &#125;)</span></span><br><span class="line"><span class="meta">@PropertySource(&quot;classpath:/eureka/server.properties&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EurekaServerAutoConfiguration</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * List of packages containing Jersey resources required by the Eureka server.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] EUREKA_PACKAGES = <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;com.netflix.discovery&quot;</span>, <span class="string">&quot;com.netflix.eureka&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> ApplicationInfoManager applicationInfoManager;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> EurekaServerConfig eurekaServerConfig;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> EurekaClientConfig eurekaClientConfig;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> EurekaClient eurekaClient;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> InstanceRegistryProperties instanceRegistryProperties;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * A &#123;<span class="doctag">@link</span> CloudJacksonJson&#125; instance.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">CloudJacksonJson</span> <span class="variable">JACKSON_JSON</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CloudJacksonJson</span>();</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> HasFeatures <span class="title function_">eurekaServerFeature</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> HasFeatures.namedFeature(<span class="string">&quot;Eureka Server&quot;</span>, EurekaServerAutoConfiguration.class);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例化EurekaController   当我们在浏览器中访问http://localhost:8761/,实际调用的就是EurekaController</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnProperty(prefix = &quot;eureka.dashboard&quot;, name = &quot;enabled&quot;, matchIfMissing = true)</span></span><br><span class="line">	<span class="keyword">public</span> EurekaController <span class="title function_">eurekaController</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">EurekaController</span>(<span class="built_in">this</span>.applicationInfoManager);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		CodecWrappers.registerWrapper(JACKSON_JSON);</span><br><span class="line">		EurekaJacksonCodec.setInstance(JACKSON_JSON.getCodec());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> ServerCodecs <span class="title function_">serverCodecs</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CloudServerCodecs</span>(<span class="built_in">this</span>.eurekaServerConfig);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> CodecWrapper <span class="title function_">getFullJson</span><span class="params">(EurekaServerConfig serverConfig)</span> &#123;</span><br><span class="line">		<span class="type">CodecWrapper</span> <span class="variable">codec</span> <span class="operator">=</span> CodecWrappers.getCodec(serverConfig.getJsonCodecName());</span><br><span class="line">		<span class="type">return</span> <span class="variable">codec</span> <span class="operator">=</span>= <span class="literal">null</span> ? CodecWrappers.getCodec(JACKSON_JSON.codecName()) : codec;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> CodecWrapper <span class="title function_">getFullXml</span><span class="params">(EurekaServerConfig serverConfig)</span> &#123;</span><br><span class="line">		<span class="type">CodecWrapper</span> <span class="variable">codec</span> <span class="operator">=</span> CodecWrappers.getCodec(serverConfig.getXmlCodecName());</span><br><span class="line">		<span class="type">return</span> <span class="variable">codec</span> <span class="operator">=</span>= <span class="literal">null</span> ? CodecWrappers.getCodec(CodecWrappers.XStreamXml.class) : codec;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">	<span class="keyword">public</span> ReplicationClientAdditionalFilters <span class="title function_">replicationClientAdditionalFilters</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ReplicationClientAdditionalFilters</span>(Collections.emptySet());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//EurekaServer 集群中节点之间同步微服务实例注册表信息的组件,收到客户端的消息后，第一步：先更新本地注册信息；第二步：遍历所有的 PeerEurekaNode，转发给其它节点</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> PeerAwareInstanceRegistry <span class="title function_">peerAwareInstanceRegistry</span><span class="params">(ServerCodecs serverCodecs)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.eurekaClient.getApplications(); <span class="comment">// force initialization</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">InstanceRegistry</span>(<span class="built_in">this</span>.eurekaServerConfig, <span class="built_in">this</span>.eurekaClientConfig, serverCodecs, <span class="built_in">this</span>.eurekaClient,</span><br><span class="line">				<span class="built_in">this</span>.instanceRegistryProperties.getExpectedNumberOfClientsSendingRenews(),</span><br><span class="line">				<span class="built_in">this</span>.instanceRegistryProperties.getDefaultOpenForTrafficCount());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//服务器列表管理，PeerEurekaNodes 管理了所有的 PeerEurekaNode 节点,即PeerEurekaNodes是微服务实例节点的集合，一个PeerEurekaNode就代表一个微服务实例</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">	<span class="keyword">public</span> PeerEurekaNodes <span class="title function_">peerEurekaNodes</span><span class="params">(PeerAwareInstanceRegistry registry, ServerCodecs serverCodecs,</span></span><br><span class="line"><span class="params">			ReplicationClientAdditionalFilters replicationClientAdditionalFilters)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RefreshablePeerEurekaNodes</span>(registry, <span class="built_in">this</span>.eurekaServerConfig, <span class="built_in">this</span>.eurekaClientConfig, serverCodecs,</span><br><span class="line">				<span class="built_in">this</span>.applicationInfoManager, replicationClientAdditionalFilters);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//本地EurekaServer服务的上下文</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">	<span class="keyword">public</span> EurekaServerContext <span class="title function_">eurekaServerContext</span><span class="params">(ServerCodecs serverCodecs, PeerAwareInstanceRegistry registry,</span></span><br><span class="line"><span class="params">			PeerEurekaNodes peerEurekaNodes)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DefaultEurekaServerContext</span>(<span class="built_in">this</span>.eurekaServerConfig, serverCodecs, registry, peerEurekaNodes,</span><br><span class="line">				<span class="built_in">this</span>.applicationInfoManager);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于启动EurekaServer服务的实例</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> EurekaServerBootstrap <span class="title function_">eurekaServerBootstrap</span><span class="params">(PeerAwareInstanceRegistry registry,</span></span><br><span class="line"><span class="params">			EurekaServerContext serverContext)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">EurekaServerBootstrap</span>(<span class="built_in">this</span>.applicationInfoManager, <span class="built_in">this</span>.eurekaClientConfig, <span class="built_in">this</span>.eurekaServerConfig,</span><br><span class="line">				registry, serverContext);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	是一个过滤器</span></span><br><span class="line"><span class="comment">	 * Register the Jersey filter.</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> eurekaJerseyApp an &#123;<span class="doctag">@link</span> Application&#125; for the filter to be registered</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> a jersey &#123;<span class="doctag">@link</span> FilterRegistrationBean&#125;</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> FilterRegistrationBean&lt;?&gt; jerseyFilterRegistration(javax.ws.rs.core.Application eurekaJerseyApp) &#123;</span><br><span class="line">		FilterRegistrationBean&lt;Filter&gt; bean = <span class="keyword">new</span> <span class="title class_">FilterRegistrationBean</span>&lt;Filter&gt;();</span><br><span class="line">		bean.setFilter(<span class="keyword">new</span> <span class="title class_">ServletContainer</span>(eurekaJerseyApp));</span><br><span class="line">		bean.setOrder(Ordered.LOWEST_PRECEDENCE);</span><br><span class="line">		bean.setUrlPatterns(Collections.singletonList(EurekaConstants.DEFAULT_PREFIX + <span class="string">&quot;/*&quot;</span>));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> bean;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Construct a Jersey &#123;<span class="doctag">@link</span> javax.ws.rs.core.Application&#125; with all the resources</span></span><br><span class="line"><span class="comment">	 * required by the Eureka server.</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> environment an &#123;<span class="doctag">@link</span> Environment&#125; instance to retrieve classpath resources</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> resourceLoader a &#123;<span class="doctag">@link</span> ResourceLoader&#125; instance to get classloader from</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> created &#123;<span class="doctag">@link</span> Application&#125; object</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="keyword">public</span> javax.ws.rs.core.Application <span class="title function_">jerseyApplication</span><span class="params">(Environment environment, ResourceLoader resourceLoader)</span> &#123;</span><br><span class="line"></span><br><span class="line">		<span class="type">ClassPathScanningCandidateComponentProvider</span> <span class="variable">provider</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathScanningCandidateComponentProvider</span>(<span class="literal">false</span>,</span><br><span class="line">				environment);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Filter to include only classes that have a particular annotation.</span></span><br><span class="line">		<span class="comment">//</span></span><br><span class="line">		provider.addIncludeFilter(<span class="keyword">new</span> <span class="title class_">AnnotationTypeFilter</span>(Path.class));</span><br><span class="line">		provider.addIncludeFilter(<span class="keyword">new</span> <span class="title class_">AnnotationTypeFilter</span>(Provider.class));</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Find classes in Eureka packages (or subpackages)</span></span><br><span class="line">		<span class="comment">//</span></span><br><span class="line">		Set&lt;Class&lt;?&gt;&gt; classes = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">		<span class="keyword">for</span> (String basePackage : EUREKA_PACKAGES) &#123;</span><br><span class="line">			Set&lt;BeanDefinition&gt; beans = provider.findCandidateComponents(basePackage);</span><br><span class="line">			<span class="keyword">for</span> (BeanDefinition bd : beans) &#123;</span><br><span class="line">				Class&lt;?&gt; cls = ClassUtils.resolveClassName(bd.getBeanClassName(), resourceLoader.getClassLoader());</span><br><span class="line">				classes.add(cls);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Construct the Jersey ResourceConfig</span></span><br><span class="line">		Map&lt;String, Object&gt; propsAndFeatures = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">		propsAndFeatures.put(</span><br><span class="line">				<span class="comment">// Skip static content used by the webapp</span></span><br><span class="line">				ServletContainer.PROPERTY_WEB_PAGE_CONTENT_REGEX,</span><br><span class="line">				EurekaConstants.DEFAULT_PREFIX + <span class="string">&quot;/(fonts|images|css|js)/.*&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="type">DefaultResourceConfig</span> <span class="variable">rc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultResourceConfig</span>(classes);</span><br><span class="line">		rc.setPropertiesAndFeatures(propsAndFeatures);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> rc;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnBean(name = &quot;httpTraceFilter&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> FilterRegistrationBean&lt;?&gt; traceFilterRegistration(<span class="meta">@Qualifier(&quot;httpTraceFilter&quot;)</span> Filter filter) &#123;</span><br><span class="line">		FilterRegistrationBean&lt;Filter&gt; bean = <span class="keyword">new</span> <span class="title class_">FilterRegistrationBean</span>&lt;Filter&gt;();</span><br><span class="line">		bean.setFilter(filter);</span><br><span class="line">		bean.setOrder(Ordered.LOWEST_PRECEDENCE - <span class="number">10</span>);</span><br><span class="line">		<span class="keyword">return</span> bean;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">EurekaServerConfigBeanConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">		<span class="keyword">public</span> EurekaServerConfig <span class="title function_">eurekaServerConfig</span><span class="params">(EurekaClientConfig clientConfig)</span> &#123;</span><br><span class="line">			<span class="type">EurekaServerConfigBean</span> <span class="variable">server</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EurekaServerConfigBean</span>();</span><br><span class="line">			<span class="keyword">if</span> (clientConfig.shouldRegisterWithEureka()) &#123;</span><br><span class="line">				<span class="comment">// Set a sensible default if we are supposed to replicate</span></span><br><span class="line">				server.setRegistrySyncRetries(<span class="number">5</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> server;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * &#123;<span class="doctag">@link</span> PeerEurekaNodes&#125; which updates peers when /refresh is invoked. Peers are</span></span><br><span class="line"><span class="comment">	 * updated only if &lt;code&gt;eureka.client.use-dns-for-fetching-service-urls&lt;/code&gt; is</span></span><br><span class="line"><span class="comment">	 * &lt;code&gt;false&lt;/code&gt; and one of following properties have changed.</span></span><br><span class="line"><span class="comment">	 * &lt;p&gt;</span></span><br><span class="line"><span class="comment">	 * &lt;/p&gt;</span></span><br><span class="line"><span class="comment">	 * &lt;ul&gt;</span></span><br><span class="line"><span class="comment">	 * &lt;li&gt;&lt;code&gt;eureka.client.availability-zones&lt;/code&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">	 * &lt;li&gt;&lt;code&gt;eureka.client.region&lt;/code&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">	 * &lt;li&gt;&lt;code&gt;eureka.client.service-url.&amp;lt;zone&amp;gt;&lt;/code&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment">	 * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">RefreshablePeerEurekaNodes</span> <span class="keyword">extends</span> <span class="title class_">PeerEurekaNodes</span></span><br><span class="line">			<span class="keyword">implements</span> <span class="title class_">ApplicationListener</span>&lt;EnvironmentChangeEvent&gt; &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">private</span> ReplicationClientAdditionalFilters replicationClientAdditionalFilters;</span><br><span class="line"></span><br><span class="line">		RefreshablePeerEurekaNodes(<span class="keyword">final</span> PeerAwareInstanceRegistry registry, <span class="keyword">final</span> EurekaServerConfig serverConfig,</span><br><span class="line">				<span class="keyword">final</span> EurekaClientConfig clientConfig, <span class="keyword">final</span> ServerCodecs serverCodecs,</span><br><span class="line">				<span class="keyword">final</span> ApplicationInfoManager applicationInfoManager,</span><br><span class="line">				<span class="keyword">final</span> ReplicationClientAdditionalFilters replicationClientAdditionalFilters) &#123;</span><br><span class="line">			<span class="built_in">super</span>(registry, serverConfig, clientConfig, serverCodecs, applicationInfoManager);</span><br><span class="line">			<span class="built_in">this</span>.replicationClientAdditionalFilters = replicationClientAdditionalFilters;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">protected</span> PeerEurekaNode <span class="title function_">createPeerEurekaNode</span><span class="params">(String peerEurekaNodeUrl)</span> &#123;</span><br><span class="line">			<span class="type">JerseyReplicationClient</span> <span class="variable">replicationClient</span> <span class="operator">=</span> JerseyReplicationClient.createReplicationClient(serverConfig,</span><br><span class="line">					serverCodecs, peerEurekaNodeUrl);</span><br><span class="line"></span><br><span class="line">			<span class="built_in">this</span>.replicationClientAdditionalFilters.getFilters().forEach(replicationClient::addReplicationClientFilter);</span><br><span class="line"></span><br><span class="line">			<span class="type">String</span> <span class="variable">targetHost</span> <span class="operator">=</span> hostFromUrl(peerEurekaNodeUrl);</span><br><span class="line">			<span class="keyword">if</span> (targetHost == <span class="literal">null</span>) &#123;</span><br><span class="line">				targetHost = <span class="string">&quot;host&quot;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PeerEurekaNode</span>(registry, targetHost, peerEurekaNodeUrl, replicationClient, serverConfig);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onApplicationEvent</span><span class="params">(<span class="keyword">final</span> EnvironmentChangeEvent event)</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (shouldUpdate(event.getKeys())) &#123;</span><br><span class="line">				updatePeerEurekaNodes(resolvePeerUrls());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * Check whether specific properties have changed.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">shouldUpdate</span><span class="params">(<span class="keyword">final</span> Set&lt;String&gt; changedKeys)</span> &#123;</span><br><span class="line">			<span class="keyword">assert</span> changedKeys != <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// if eureka.client.use-dns-for-fetching-service-urls is true, then</span></span><br><span class="line">			<span class="comment">// service-url will not be fetched from environment.</span></span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">this</span>.clientConfig.shouldUseDnsForFetchingServiceUrls()) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (changedKeys.contains(<span class="string">&quot;eureka.client.region&quot;</span>)) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">final</span> String key : changedKeys) &#123;</span><br><span class="line">				<span class="comment">// property keys are not expected to be null.</span></span><br><span class="line">				<span class="keyword">if</span> (key.startsWith(<span class="string">&quot;eureka.client.service-url.&quot;</span>)</span><br><span class="line">						|| key.startsWith(<span class="string">&quot;eureka.client.availability-zones.&quot;</span>)) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">CloudServerCodecs</span> <span class="keyword">extends</span> <span class="title class_">DefaultServerCodecs</span> &#123;</span><br><span class="line"></span><br><span class="line">		CloudServerCodecs(EurekaServerConfig serverConfig) &#123;</span><br><span class="line">			<span class="built_in">super</span>(getFullJson(serverConfig), CodecWrappers.getCodec(CodecWrappers.JacksonJsonMini.class),</span><br><span class="line">					getFullXml(serverConfig), CodecWrappers.getCodec(CodecWrappers.JacksonXmlMini.class));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="EurekaServerInitializerConfiguration完成Eureka初始化"><a href="#EurekaServerInitializerConfiguration完成Eureka初始化" class="headerlink" title="EurekaServerInitializerConfiguration完成Eureka初始化"></a>EurekaServerInitializerConfiguration完成Eureka初始化</h3><p>EurekaServerInitializerConfiguration配置类实现了SmartLifecycle，所以在完成Ioc完成所有Bean初始化后，来执行实现了SmartLifecycle类的start()方法，即EurekaServerInitializerConfiguration中的start()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123;</span><br><span class="line">   <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">         <span class="comment">// <span class="doctag">TODO:</span> is this class even needed now?</span></span><br><span class="line">          <span class="comment">//启动Eureka 服务</span></span><br><span class="line">         eurekaServerBootstrap.contextInitialized(EurekaServerInitializerConfiguration.<span class="built_in">this</span>.servletContext);</span><br><span class="line">         log.info(<span class="string">&quot;Started Eureka Server&quot;</span>);</span><br><span class="line">		<span class="comment">//发布EurekaRegistryAvailableEvent事件</span></span><br><span class="line">         publish(<span class="keyword">new</span> <span class="title class_">EurekaRegistryAvailableEvent</span>(getEurekaServerConfig()));</span><br><span class="line">          <span class="comment">//设置运行状态为true</span></span><br><span class="line">         EurekaServerInitializerConfiguration.<span class="built_in">this</span>.running = <span class="literal">true</span>;</span><br><span class="line">          <span class="comment">//发布EurekaServerStartedEvent事件</span></span><br><span class="line">         publish(<span class="keyword">new</span> <span class="title class_">EurekaServerStartedEvent</span>(getEurekaServerConfig()));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">         <span class="comment">// Help!</span></span><br><span class="line">         log.error(<span class="string">&quot;Could not initialize Eureka servlet context&quot;</span>, ex);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>进入到 eurekaServerBootstrap.contextInitialized(ServletContext context)的方法中，该方法主要进行了初始化Eureka的环境信息和初始化Eureka的应用上下文信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextInitialized</span><span class="params">(ServletContext context)</span> &#123;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">   <span class="comment">//初始化环境信息，该方法是一空方法</span></span><br><span class="line">      initEurekaEnvironment();</span><br><span class="line">      <span class="comment">//初始化Eureka应用上下文信息</span></span><br><span class="line">      initEurekaServerContext();</span><br><span class="line"></span><br><span class="line">      context.setAttribute(EurekaServerContext.class.getName(), <span class="built_in">this</span>.serverContext);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">      log.error(<span class="string">&quot;Cannot bootstrap eureka server :&quot;</span>, e);</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Cannot bootstrap eureka server :&quot;</span>, e);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">initEurekaServerContext</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// For backward compatibility</span></span><br><span class="line">		JsonXStream.getInstance().registerConverter(<span class="keyword">new</span> <span class="title class_">V1AwareInstanceInfoConverter</span>(), XStream.PRIORITY_VERY_HIGH);</span><br><span class="line">		XmlXStream.getInstance().registerConverter(<span class="keyword">new</span> <span class="title class_">V1AwareInstanceInfoConverter</span>(), XStream.PRIORITY_VERY_HIGH);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (isAws(<span class="built_in">this</span>.applicationInfoManager.getInfo())) &#123;</span><br><span class="line">			<span class="built_in">this</span>.awsBinder = <span class="keyword">new</span> <span class="title class_">AwsBinderDelegate</span>(<span class="built_in">this</span>.eurekaServerConfig, <span class="built_in">this</span>.eurekaClientConfig, <span class="built_in">this</span>.registry,</span><br><span class="line">					<span class="built_in">this</span>.applicationInfoManager);</span><br><span class="line">			<span class="built_in">this</span>.awsBinder.start();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		EurekaServerContextHolder.initialize(<span class="built_in">this</span>.serverContext);</span><br><span class="line"></span><br><span class="line">		log.info(<span class="string">&quot;Initialized server context&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Copy registry from neighboring eureka node</span></span><br><span class="line">        <span class="comment">//遍历eurekaClient.getApplications获取服务信息，并将服务信息注册到自己的registry中。</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">registryCount</span> <span class="operator">=</span> <span class="built_in">this</span>.registry.syncUp();</span><br><span class="line">        <span class="comment">//1、修改服务的状态为UP</span></span><br><span class="line">        <span class="comment">//2、调用父类的postInit 开启一个剔除定时任务，每隔一定时间(默认60秒)执行一次，从当前服务清单中把超时（默认90秒）没有续约剔</span></span><br><span class="line">		<span class="built_in">this</span>.registry.openForTraffic(<span class="built_in">this</span>.applicationInfoManager, registryCount);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Register all monitoring statistics.</span></span><br><span class="line">        <span class="comment">//注册所有的监控统计信息</span></span><br><span class="line">		EurekaMonitors.registerAllStats();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>SpringCloud Eureka Server作为注册中心，主要完成下面的三件事情</p>
+<p>1、启动后，从其他节点拉取服务注册信息</p>
+<p>2、运行过程中，启动一个evict任务，定时剔除没有按时Renew的服务</p>
+<p>3、接受到其他节点的Rgister,Renew,Cancel请求信息后，会将这些信息同步至其他注册中心的节点。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2021/10/25/spring-cloud/eureka/SpringCloud-Eureka%E4%B8%AD%E7%9A%84@LoadBalanced%E6%B3%A8%E8%A7%A3/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>SpringCloud Eureka中的@LoadBalanced注解</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2021/10/20/spring-cloud/eureka/SpringCloud-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/">
+        <span>SpringCloud Eureka注册中心搭建</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2021/10/20/spring-cloud/eureka/Spring%20Cloud%20EurekaServer%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eureka%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">Eureka初始化配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EurekaServerInitializerConfiguration%E5%AE%8C%E6%88%90Eureka%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">EurekaServerInitializerConfiguration完成Eureka初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
