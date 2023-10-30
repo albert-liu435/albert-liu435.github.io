@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            salesforce数据模型 | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/">salesforce数据模型</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2022-06-17
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2023-10-30
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/salesforce/">salesforce</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=salesforce数据模型&url=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=salesforce数据模型&url=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/&title=salesforce数据模型" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=salesforce数据模型&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/&text=salesforce数据模型" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/admin/ >admin</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>salesforce中的数据模型和我们在java中看到的数据模型有一定的区别，在salesforce中我们会将创建的数据库表视为对象，我们将列视为字段，将行视为记录。<br>salesforce中的对象主要分为自定义对象和标准对象，其中标准对象是salesforce自带的对象，而自定义对象时我们用户自己创建的对象，自定义创建对象也比较简单，我们可以在自定义对象和标准对象中添加我们自定义的字段，其中自定义字段和自定义对象的API名称都是以__C结尾的，用于区分salesforce中的自定义和标准的对象及字段。</p>
+<h3 id="Object-Manage创建对象"><a href="#Object-Manage创建对象" class="headerlink" title="Object Manage创建对象"></a>Object Manage创建对象</h3><p>Setup -&gt;在左侧搜索Object Manager-&gt;点击之后选择右侧的Create Custome Object即可按照操作步骤创建一个自定义对象了</p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617094544407.png" alt="image-20220617094544407"></p>
+<p>创建完成后如图，我们可以为我们的自定义对象创建字段信息，其中CreatedById，CurrencyIsoCode，LastModifiedById，OwnerId，Name为创建自定义对象后salesforce默认添加的字段信息，是每个对象都存在的信息</p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617095202076.png" alt="image-20220617095202076"></p>
+<p>为Student创建自定义字段 age</p>
+<p>数据类型选在Number,然后点击Next，然后直接输入Age,如图，其他保持默认，一直next直到save。这样字段就创建成功了</p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617100743446.png" alt="image-20220617100743446"></p>
+<p>其中数据类型主要有以下几种</p>
+<p>Auto Number:自动编号	系统使用您定义的显示格式生成的序列编号。该编号对于每条新记录会自动递增。<br>Formula:公式	根据您定义的公式表达式派生其值的只读字段。任何来源字段有所更改，该公式字段均将更新。<br>Roll-Up Summary:累计汇总	在相关列表中显示字段的汇总值、最小值或最大值的只读字段，或在相关列表中列出的所有记录的记录数。<br>External Lookup Relationship:外部查找关系	创建一种关系，将此对象链接到在 Salesforce 组织外部存储数据的外部对象。<br>Lookup Relationship:查找关系	创建一个将此对象链接到另一对象的关系。关系字段允许用户单击查找图标，以从弹出列表中选择值。另一对象是列表中值的源。</p>
+<p>Text (Encrypted):加密文本<br>允许用户输入任何字母和数字组合，并将它们以加密格式存储。<br>Checkbox:复选框	允许用户选择”真”（选取）或”假”（不选取）值。<br>Text Area (Rich):文本区（RTF）	允许用户输入格式化文本、添加图片和链接。最多有 131,072 个字符在分开行上。<br>Currency:币种	允许用户输入美元或其他币种金额，并将字段自动转换为币种金额格式。此功能在将数据导出到 Excel 或其它电子表格时非常有用。<br>Number:数字	允许用户输入任何数字。将删除前置零。<br>Text:文本	允许用户输入任何字母和数字组合。<br>Text Area:文本区	允许用户输入多行文本，最多可输入 255 个字符。<br>Date:日期	允许用户输入日期或从弹出式日历中选择日期。<br>Date&#x2F;Time:日期&#x2F;时间	允许用户输入日期和时间，或从弹出式日历中选择日期。当用户单击弹出式日历中的某个日期后，该日期和当前时间将输入到“日期&#x2F;时间”字段。<br>Time:时间	允许用户输入当地时间。例如，”2:40 PM”、”14:40”、”14:40:00” 和 “14:40:50.600” 是此字段的所有有效时间。<br>Email:电子邮件	允许用户输入电子邮件地址，对其进行验证以确保格式正确。如果对于一个联系人和潜在客户指定了此字段，则用户单击“发送电子邮件”时可以选择地址。注意，自定义电子邮件地址无法用于批量电子邮件。<br>Phone:电话	允许用户输入任何电话号码。自动将其转换为电话号码格式。<br>Percent:百分比	允许用户输入百分比数字（例如，”10”），并自动向数字添加百分号。<br>Picklist:选项列表	允许用户从定义的列表中选择值。<br>Picklist (Multi-Select):选项列表（多项选择）	允许用户从定义的列表中选择多个值。<br>:Text Area (Long):文本区（长）	允许用户输入多行文本，最多可输入 131,072 个字符。<br>URL:允许用户输入任何有效的网址。当用户单击该字段时，该 URL 将在单独的浏览器窗口中打开。</p>
+<h3 id="创建一条学生记录"><a href="#创建一条学生记录" class="headerlink" title="创建一条学生记录"></a>创建一条学生记录</h3><p>首先需要设置自定义选项卡，如下图，自定义选项卡在创建自定义对象的时候也可以进行设置。</p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617101825092.png" alt="image-20220617101825092"></p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617101832149.png" alt="image-20220617101832149"></p>
+<p>设置完成之后，我们就可以在页面搜索到Students页面了，我们就可以创建一个学生记录，如图</p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617102154294.png" alt="image-20220617102154294"></p>
+<p><img src="/images/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/image-20220617102159796.png" alt="image-20220617102159796"></p>
+<p>我们也可以通过Schema Builder进行更方便的创建自定义对象与自定义字段，读者可以按照trailhead进行练习</p>
+<p><a target="_blank" rel="noopener" href="https://trailhead.salesforce.com/content/learn/modules/data_modeling?trail_id=force_com_admin_beginner">参考</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2022/06/18/salesforce/apex/apex%E7%B1%BB%E6%8E%A5%E5%8F%A32022-06-18/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>apex开发基础</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2022/06/16/salesforce/admin/salesforce%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/">
+        <span>salesforce基本设置</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2022/06/17/salesforce/admin/salesforce%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B2022-06-17/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-Manage%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">Object Manage创建对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E6%9D%A1%E5%AD%A6%E7%94%9F%E8%AE%B0%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">创建一条学生记录</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

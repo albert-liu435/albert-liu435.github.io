@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            vscode设置vue | albert-liu435的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">albert-liu435的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">albert.liu435</div>
+            <div class="sidebar-description">技术学习</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:albert.liu435@gmail.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://github.com/albert-liu435" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/">vscode设置vue</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2022-09-01
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2023-10-30
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=vscode设置vue&url=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/&pic=https://albert-liu435.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=vscode设置vue&url=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/&via=albert.liu435" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/&title=vscode设置vue" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=albert-liu435的博客&title=vscode设置vue&summary=技术学习&pics=https://albert-liu435.github.io/null&url=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://albert-liu435.github.io/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/&text=vscode设置vue" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/vscode/ >vscode</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h3 id="vscode设置vue扩展"><a href="#vscode设置vue扩展" class="headerlink" title="vscode设置vue扩展"></a>vscode设置vue扩展</h3><p><img src="/images/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/image-20220901231223268.png" alt="image-20220901231223268"></p>
+<h3 id="NPM安装"><a href="#NPM安装" class="headerlink" title="NPM安装"></a>NPM安装</h3><p>vue需要安装npm和vue及Vue Cli</p>
+<p>npm安装自己从官网下载即可，vue和Vue Cli安装命令如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install vue@next</span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用Vite 进行创建，可以参考</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/vue3/vue3-install.html">https://www.runoob.com/vue3/vue3-install.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://vitejs.cn/guide/#overview">https://vitejs.cn/guide/#overview</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.vitejs.net/guide/#trying-vite-online">https://www.vitejs.net/guide/#trying-vite-online</a></p>
+<p>创建vue命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create runoob-vue3-app</span><br></pre></td></tr></table></figure>
+
+<p>vue设置html自动补全插件</p>
+<p><img src="/images/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/image-20220903094735033.png" alt="image-20220903094735033"></p>
+<h3 id="VUE配置"><a href="#VUE配置" class="headerlink" title="VUE配置"></a>VUE配置</h3><p>Ctrl+Shift+P,然后找到settings.json</p>
+<p>vue的格式化配置如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;salesforcedx-vscode-apex.java.home&quot;</span><span class="punctuation">:</span> <span class="string">&quot;D:\\developer\\java\\jdk\\jdk1.8.0_131&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;redhat.telemetry.enabled&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;java.configuration.runtimes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;JavaSE-1.8&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;D:\\developer\\java\\jdk\\jdk1.8.0_131&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;files.autoGuessEncoding&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;git.autofetch&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;vetur.completion.scaffoldSnippetSources&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;workspace&quot;</span><span class="punctuation">:</span> <span class="string">&quot;💼&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;🗒️&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vetur&quot;</span><span class="punctuation">:</span> <span class="string">&quot;✌&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="attr">&quot;editor.fontSize&quot;</span><span class="punctuation">:</span> <span class="number">17</span><span class="punctuation">,</span><span class="comment">//编辑器字体大小</span></span><br><span class="line">    <span class="attr">&quot;[scss]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;michelemelluso.code-beautifier&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="comment">//scss格式化工具</span></span><br><span class="line">    <span class="attr">&quot;workbench.iconTheme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vscode-icons&quot;</span><span class="punctuation">,</span><span class="comment">//vscode文件图标主题</span></span><br><span class="line">    <span class="attr">&quot;terminal.integrated.shell.windows&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe&quot;</span><span class="punctuation">,</span><span class="comment">//默认终端shell</span></span><br><span class="line">    <span class="attr">&quot;go.formatTool&quot;</span><span class="punctuation">:</span> <span class="string">&quot;goimports&quot;</span><span class="punctuation">,</span><span class="comment">//golang格式化工具</span></span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;esbenp.prettier-vscode&quot;</span><span class="punctuation">,</span> <span class="comment">//编辑器格式化工具</span></span><br><span class="line">    <span class="attr">&quot;[javascript]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rvest.vs-code-prettier-eslint&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="comment">//javascript格式化工具</span></span><br><span class="line">    <span class="attr">&quot;[vue]&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;editor.defaultFormatter&quot;</span><span class="punctuation">:</span> <span class="string">&quot;octref.vetur&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="comment">//vue格式化工具</span></span><br><span class="line">    <span class="attr">&quot;editor.insertSpaces&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;workbench.editor.enablePreview&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span> <span class="comment">//打开文件不覆盖</span></span><br><span class="line">    <span class="attr">&quot;search.followSymlinks&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span> <span class="comment">//关闭rg.exe进程</span></span><br><span class="line">    <span class="attr">&quot;editor.minimap.enabled&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span> <span class="comment">//关闭快速预览</span></span><br><span class="line">    <span class="attr">&quot;files.autoSave&quot;</span><span class="punctuation">:</span> <span class="string">&quot;afterDelay&quot;</span><span class="punctuation">,</span> <span class="comment">//编辑自动保存</span></span><br><span class="line">    <span class="attr">&quot;editor.lineNumbers&quot;</span><span class="punctuation">:</span> <span class="string">&quot;on&quot;</span><span class="punctuation">,</span> <span class="comment">//开启行数提示</span></span><br><span class="line">    <span class="attr">&quot;editor.quickSuggestions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="comment">//开启自动显示建议</span></span><br><span class="line">      <span class="attr">&quot;other&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;comments&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;strings&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;editor.tabSize&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span> <span class="comment">//制表符符号eslint</span></span><br><span class="line">    <span class="attr">&quot;editor.formatOnSave&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span> <span class="comment">//每次保存自动格式化</span></span><br><span class="line">    <span class="comment">// &quot;eslint.codeActionsOnSave&quot;: &#123;</span></span><br><span class="line">    <span class="comment">//     &quot;source.fixAll.eslint&quot;: true</span></span><br><span class="line">    <span class="comment">// &#125;,</span></span><br><span class="line">    <span class="attr">&quot;prettier.eslintIntegration&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span> <span class="comment">//让prettier使用eslint的代码格式进行校验</span></span><br><span class="line">    <span class="attr">&quot;prettier.semi&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span> <span class="comment">//去掉代码结尾的分号</span></span><br><span class="line">    <span class="attr">&quot;prettier.singleQuote&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span> <span class="comment">//使用单引号替代双引号</span></span><br><span class="line">    <span class="attr">&quot;javascript.format.insertSpaceBeforeFunctionParenthesis&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span> <span class="comment">//让函数(名)和后面的括号之间加个空格</span></span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatter.html&quot;</span><span class="punctuation">:</span> <span class="string">&quot;js-beautify-html&quot;</span><span class="punctuation">,</span> <span class="comment">//格式化.vue中html</span></span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatter.js&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vscode-typescript&quot;</span><span class="punctuation">,</span> <span class="comment">//让vue中的js按编辑器自带的ts格式进行格式化</span></span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatterOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;js-beautify-html&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;wrap_attributes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;force-aligned&quot;</span> <span class="comment">//属性强制折行对齐</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;semi&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;singleQuote&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;vscode-typescript&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;semi&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;singleQuote&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;eslint.validate&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="string">&quot;vue&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="comment">// &quot;javascript&quot;,</span></span><br><span class="line">      <span class="string">&quot;typescript&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="string">&quot;typescriptreact&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="string">&quot;html&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;editor.codeActionsOnSave&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;source.fixAll.eslint&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2022/09/03/web-project/vscode/vscode%E9%87%87%E7%94%A8vite%E5%BC%80%E5%8F%91vue-20220903/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>vscode采用vite开发vue</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2022/08/20/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEhtml/">
+        <span>vscode设置html</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2022/09/01/web-project/vscode/vscode%E8%AE%BE%E7%BD%AEvue-20220901/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#vscode%E8%AE%BE%E7%BD%AEvue%E6%89%A9%E5%B1%95"><span class="toc-number">1.</span> <span class="toc-text">vscode设置vue扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NPM%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">NPM安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VUE%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">VUE配置</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2023 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        albert.liu435
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
