@@ -206,7 +206,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2023-02-01
+      更新于:&nbsp;2023-02-03
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -290,7 +290,8 @@
 <h4 id="生成公钥"><a href="#生成公钥" class="headerlink" title="生成公钥"></a>生成公钥</h4><p>在linux下执行如下命令生成公钥，并将公钥加入到github上面，这样就可以clone代码了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -f /root/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
 
-
+<p>git 版本回退及提交<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1662711?areaSource=104001.18&amp;traceId=qdL3r_CySqzO745CFA45j">https://cloud.tencent.com/developer/article/1662711?areaSource=104001.18&amp;traceId=qdL3r_CySqzO745CFA45j</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard db6c2e29081598d073ce6813b368e6784ddb555d</span><br><span class="line"></span><br><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnerM/article/details/122100354">参考1</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/86b3f4e3bd81">参考2</a></p>
@@ -305,6 +306,11 @@
   <div class="mdui-divider"></div>
   
   <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2023/09/15/bigData/postgreSQL/postgreSql%E5%AE%89%E8%A3%85/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>PostgreSql 15.4安装</span>
+      </a>
     
     
       <a rel="next" class="post-nav-item mdui-float-right" href="/2022/07/05/salesforce/apex/trigger%E7%94%A8%E6%B3%952022-07-05/">
